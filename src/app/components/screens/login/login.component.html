@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <form class="border rounded p-5" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <h3 class="mb-4 text-uppercase">Account Login</h3>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+                </div>
+                <ng-container *ngIf="loginForm.controls.email.errors && loginForm.controls.email?.touched">
+                    <div class="alert alert-danger" role="alert">
+                        Email is incorrect
+                    </div>
+                </ng-container>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Enter password" formControlName="password">
+                </div>
+
+                <ng-container *ngIf="error">
+                    <div class="alert alert-danger" role="alert">
+                        Email or password is invalid
+                    </div>
+                </ng-container>
+
+                <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                <p class="text-center mt-3">Not registered? <span class="text-success">Create an account</span></p>
+            </form>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+</div>
