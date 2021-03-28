@@ -17,15 +17,6 @@ export class AuthService {
     if (this.loggedIn !== null) {
       return this.loggedIn
     }
-    let user = localStorage.getItem('user');
-    if (user.length > 0) {
-      this.loggedIn = true;
-      return true
-    }
-    else {
-      this.loggedIn = false;
-      return false
-    }
   }
 
   signUp(user) {
@@ -34,6 +25,12 @@ export class AuthService {
 
   signIn(user) {
     return this.http.post(this.url_base + '/api/users/login', user)
+  }
+
+  logOut() {
+    localStorage.removeItem('user');
+    this.loggedIn = false;
+    this.router.navigate(['']);
   }
 
   saveToLocalStrorage(key, value) {
@@ -46,8 +43,10 @@ export class AuthService {
   }
 
   logUserIn(user) {
+    this.loggedIn = true
     this.currentUser = user;
     this.saveToLocalStrorage('user', this.currentUser);
     this.router.navigate([''])
   }
+
 }
