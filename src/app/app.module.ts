@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/screens/navbar/navbar.component';
 import { HomeComponent } from './components/screens/home/home.component';
 import { AddArticlesComponent } from './components/common/add-articles/add-articles.component';
+import { ProfileComponent } from './components/screens/profile/profile.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { AddArticlesComponent } from './components/common/add-articles/add-artic
     NavbarComponent,
     HomeComponent,
     AddArticlesComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
