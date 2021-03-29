@@ -1,4 +1,5 @@
-import { AuthInterceptor } from './guard/auth.interceptor';
+
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -13,6 +14,8 @@ import { LoginComponent } from './components/screens/login/login.component';
 import { SignUpComponent } from './components/screens/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddNewComponent } from './components/common/add-new/add-new.component';
+import { AuthInterceptor } from './guard/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProfileComponent,
     LoginComponent,
     SignUpComponent,
+    AddNewComponent,
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, HttpClientModule,

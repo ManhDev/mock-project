@@ -1,9 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticlesService {
+  url_base = "https://conduit.productionready.io/";
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
+  getArticles() {
+    return this.http.get(this.url_base + 'api/articles')
+  }
+  getDetailsAriticle(id) {
+    return this.http.get(this.url_base + 'api/articles/:' + id)
+  }
+
+  addNewArticle(article) {
+    return this.http.post(this.url_base + '/api/articles', article)
+  }
 }

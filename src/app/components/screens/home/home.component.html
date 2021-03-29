@@ -1,6 +1,6 @@
 <div class="container">
     <div>
-        <app-add-articles></app-add-articles>
+        <app-add-new *ngIf="authService.isLogIn()"></app-add-new>
     </div>
     <div class="row">
         <div class="col-md-9">
