@@ -12,6 +12,7 @@ import { ProfileComponent } from './components/screens/profile/profile.component
 import { LoginComponent } from './components/screens/login/login.component';
 import { SignUpComponent } from './components/screens/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     SignUpComponent,
   ],
   imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    BrowserModule, ReactiveFormsModule, HttpClientModule,
     AppRoutingModule,
+    NgbModule
   ],
   providers: [
     {
@@ -38,4 +38,4 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
