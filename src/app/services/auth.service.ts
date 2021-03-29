@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   signIn(user) {
-    return this.http.post(this.url_base + '/api/users/login', user)
+    return this.http.post(this.url_base + 'api/users/login', user)
   }
 
   logOut() {
