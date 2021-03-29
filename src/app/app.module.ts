@@ -8,10 +8,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/screens/navbar/navbar.component';
 import { HomeComponent } from './components/screens/home/home.component';
 import { AddArticlesComponent } from './components/common/add-articles/add-articles.component';
+import { ProfileComponent } from './components/screens/profile/profile.component';
 import { LoginComponent } from './components/screens/login/login.component';
 import { SignUpComponent } from './components/screens/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
 
 @NgModule({
   declarations: [
@@ -19,20 +19,23 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     HomeComponent,
     AddArticlesComponent,
+    ProfileComponent,
     LoginComponent,
     SignUpComponent,
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule, HttpClientModule,
-    AppRoutingModule
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
