@@ -1,3 +1,4 @@
+import { DetailArticleComponent } from './components/screens/detail-article/detail-article.component';
 import { LoginGuard } from './guard/login.guard';
 import { AuthGuard } from './guard/auth.guard';
 import { SignUpComponent } from './components/screens/sign-up/sign-up.component';
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'detail',
+    component: DetailArticleComponent,
   },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [LoginGuard] },
