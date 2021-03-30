@@ -16,6 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddNewComponent } from './components/common/add-new/add-new.component';
 import { AuthInterceptor } from './guard/auth.interceptor';
+import { CommentComponent } from './components/common/comment/comment.component';
+import { ArticlesComponent } from './components/common/articles/articles.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { AuthInterceptor } from './guard/auth.interceptor';
     LoginComponent,
     SignUpComponent,
     AddNewComponent,
+    CommentComponent,
+    ArticlesComponent,
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, HttpClientModule,
