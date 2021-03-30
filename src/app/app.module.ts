@@ -18,6 +18,7 @@ import { AddNewComponent } from './components/common/add-new/add-new.component';
 import { AuthInterceptor } from './guard/auth.interceptor';
 import { CommentComponent } from './components/common/comment/comment.component';
 import { ArticlesComponent } from './components/common/articles/articles.component';
+import { DetailArticleComponent } from './components/screens/detail-article/detail-article.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ArticlesComponent } from './components/common/articles/articles.compone
     AddNewComponent,
     CommentComponent,
     ArticlesComponent,
+    DetailArticleComponent,
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, HttpClientModule,
