@@ -8,21 +8,16 @@
 
       <div class="collapse navbar-collapse">
         <form class="form-inline">
-          <input
-            class="border-custom form-control"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
+          <input class="border-custom form-control" type="search" placeholder="Search" aria-label="Search" />
         </form>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <li class="nav-item" [class.d-none]="authService.isLogIn()">
             <a class="nav-link text-white" routerLink="login">Sign In</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" [class.d-none]="authService.isLogIn()">
             <a class="nav-link text-white" routerLink="sign-up">Sign Up</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="authService.isLogIn()">
             <div class="dropdown">
               <button class="btn text-white dropdown-toggle">User</button>
               <div class="dropdown-menu pd-0 mr-0 show">

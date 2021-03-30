@@ -20,20 +20,16 @@ export class LoginComponent implements OnInit {
     })
   }
   onLogin() {
-    console.log(this.loginForm);
-
     let user = {
       user: {
         ...this.loginForm.value
       }
     }
 
-
     this.authService.signIn(user).subscribe(
       res => { this.authService.logUserIn(res) },
       (error: HttpErrorResponse) => {
         console.log(error);
-
         this.error = true
       })
   }

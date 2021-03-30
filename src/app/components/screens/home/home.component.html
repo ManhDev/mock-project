@@ -1,44 +1,29 @@
-<div class="container">
-    <div>
-        <app-add-new *ngIf="authService.isLogIn()"></app-add-new>
-    </div>
-    <div class="row">
-        <div class="col-md-9">
-            <div class="card border-0 shadow-sm p-0 mb-5 bg-white rounded">
-                <div class="card-body p-2">
-                    <div class="d-flex mb-3">
-                        <div class="mr-2">
-                            <img src="" alt="" width="60x" height="60px">
-                        </div>
-                        <div>
-                            <h5>Name</h5>
-                            <p>Time</p>
-                        </div>
-                    </div>
-                    <h6 class="card-title mb-0">Title</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <div class="row mt-3">
-                        <div class="col-md-3">
-                            like
-                        </div>
-                        <div class="col-md-3">
-                            comment
-                        </div>
-                        <div class="col-md-3">
-                            share
-                        </div>
-                    </div>
+<div class="mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <app-add-new *ngIf="authService.isLogIn()"></app-add-new>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link">My Feed</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Global</a>
+                    </li>
+                </ul>
+                <div class="card border-0 shadow-sm p-0 mb-5 bg-white rounded">
+                    <app-articles></app-articles>
+                    <app-comment></app-comment>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="bg-light p-2">
+                    <p>Popular Tags</p>
+                    <span class="badge badge-secondary">Secondary</span>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="bg-light p-2">
-                <p>Popular Tags</p>
-                <span class="badge badge-secondary">Secondary</span>
-            </div>
-        </div>
+
+
     </div>
-
-
 </div>
