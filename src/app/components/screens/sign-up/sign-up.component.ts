@@ -36,12 +36,11 @@ export class SignUpComponent implements OnInit {
     }
     this.authService.signUp(user).subscribe(
       res => { this.authService.logUserIn(res) },
+
       (error: HttpErrorResponse) => {
+
         error.error['errors']['username'] ? this.errUserName = true : this.errUserName = false;
         error.error['errors']['email'] ? this.errEmail = true : this.errEmail = false;
-        console.log('user', !this.errUserName);
-        console.log('mail', !this.errEmail);
-
         if (!this.errUserName && !this.errEmail) {
           this.hasError = false
         }

@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -14,6 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+
 
     let user = localStorage.getItem('user') || null;
     if (user) {

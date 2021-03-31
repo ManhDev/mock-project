@@ -12,6 +12,9 @@ export class ArticlesService {
   getArticles() {
     return this.http.get(this.url_base + 'api/articles')
   }
+  getMyFeedArticles() {
+    return this.http.get(this.url_base + 'api/articles/feed')
+  }
   getDetailsAriticle(id) {
     return this.http.get(this.url_base + 'api/articles/:' + id)
   }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { CommentsService } from './../../../services/comments.service';
+import { SingleArticle } from './../../../models/single_article';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-comment',
@@ -6,12 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  time: any;
-  constructor() { }
+  @Input('article') article: SingleArticle;
+  comments: []
+
+  constructor(private commentsService: CommentsService) { }
 
   ngOnInit(): void {
-    this.time = new Date()
-
+    this.commentsService.getCommentBySlug(this.article['slug']).subscribe(res => {
+      this.comments = res['comments']
+    })
   }
 
 }

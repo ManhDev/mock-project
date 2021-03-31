@@ -1,20 +1,20 @@
-<div class="comment">
-    <div class="d-flex">
-        <img src="https://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="" width="30" height="30"
-            class="rounded-circle">
-        <div class="ml-2 d-inline-block bg-light p-2 rounded">
-            <h6>Name</h6>
-            <p>coment</p>
+<ng-container *ngFor="let comment of comments">
+    <div class="comment">
+        <div class="d-flex">
+            <img src="https://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="" width="30"
+                height="30" class="rounded-circle">
+            <div class="ml-2 d-inline-block bg-light p-2 rounded">
+                <h6>{{comment['author']['username']}}</h6>
+                <p>{{comment['body']}}</p>
+            </div>
+        </div>
+        <div class="time d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock mr-2"
+                viewBox="0 0 16 16">
+                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+            </svg>
+            <p>{{comment['createdAt'] | date:'short'}}</p>
         </div>
     </div>
-    <div class="time d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock mr-2"
-            viewBox="0 0 16 16">
-            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-        </svg>
-        <p>Time</p>
-    </div>
-
-
-</div>
+</ng-container>

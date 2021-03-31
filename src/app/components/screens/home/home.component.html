@@ -3,17 +3,29 @@
         <div class="row">
             <div class="col-md-9">
                 <app-add-new *ngIf="authService.isLogIn()"></app-add-new>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link">My Feed</a>
+                <ul class="nav mb-3">
+                    <li class="nav-item custom-pointer" *ngIf="authService.isLogIn()" (click)="feedView()">
+                        <a class="font-custom nav-link" [class.active]="mode === 'myfeed'">Bảng Tin</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Global</a>
+                    <li class="nav-item custom-pointer" (click)="globalView()">
+                        <a class="font-custom nav-link" [class.active]="mode === 'global'">Cộng đồng</a>
                     </li>
                 </ul>
-                <div class="card border-0 shadow-sm p-0 mb-5 bg-white rounded">
-                    <app-articles></app-articles>
-                    <app-comment></app-comment>
+                <div>
+                    <div *ngIf="mode === 'global'">
+                        <ng-container *ngFor="let article of globalArticles">
+                            <app-articles [article]="article"></app-articles>
+                        </ng-container>
+                    </div>
+
+                    <div *ngIf="mode === 'myfeed'">
+                        <div *ngIf="authService.isLogIn() && feedArticles.length === 0"
+                            class="border-0 shadow p-3 bg-white rounded">No articles are here... yet.
+                        </div>
+                        <ng-container *ngFor="let article of feedArticles">
+                            <app-articles [article]="article"></app-articles>
+                        </ng-container>
+                    </div>
                 </div>
             </div>
             <div class="col-md-3">
