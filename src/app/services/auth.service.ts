@@ -18,7 +18,7 @@ export class AuthService {
       return this.loggedIn
     }
     let user = localStorage.getItem('user');
-    if (user) {
+    if (!!user) {
       this.loggedIn = true;
       return true
     }
