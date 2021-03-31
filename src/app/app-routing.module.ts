@@ -1,3 +1,4 @@
+import { DetailArticleComponent } from './components/screens/detail-article/detail-article.component';
 import { LoginGuard } from './guard/login.guard';
 import { AuthGuard } from './guard/auth.guard';
 import { SignUpComponent } from './components/screens/sign-up/sign-up.component';
@@ -8,7 +9,16 @@ import { ProfileComponent } from './components/screens/profile/profile.component
 import { HomeComponent } from './components/screens/home/home.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'detail',
+    component: DetailArticleComponent,
+  },
+
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [LoginGuard] },
 ];

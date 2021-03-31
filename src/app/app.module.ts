@@ -19,6 +19,7 @@ import { AuthInterceptor } from './guard/auth.interceptor';
 import { CommentComponent } from './components/common/comment/comment.component';
 import { ArticlesComponent } from './components/common/articles/articles.component';
 import { BodyCustomPipe } from './components/common/pipe/body-custom.pipe';
+import { DetailArticleComponent } from './components/screens/detail-article/detail-article.component';
 
 
 @NgModule({
@@ -34,6 +35,8 @@ import { BodyCustomPipe } from './components/common/pipe/body-custom.pipe';
     CommentComponent,
     ArticlesComponent,
     BodyCustomPipe,
+    DetailArticleComponent,
+
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, HttpClientModule,
