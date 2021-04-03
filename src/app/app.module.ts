@@ -20,6 +20,7 @@ import { CommentComponent } from './components/common/comment/comment.component'
 import { ArticlesComponent } from './components/common/articles/articles.component';
 import { BodyCustomPipe } from './components/common/pipe/body-custom.pipe';
 import { DetailArticleComponent } from './components/screens/detail-article/detail-article.component';
+import { AddCommentComponent } from './components/common/add-comment/add-comment.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { DetailArticleComponent } from './components/screens/detail-article/deta
     ArticlesComponent,
     BodyCustomPipe,
     DetailArticleComponent,
+    AddCommentComponent,
 
   ],
   imports: [

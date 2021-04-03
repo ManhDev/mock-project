@@ -1,5 +1,8 @@
+import { CommentsService } from './../../../services/comments.service';
+import { ArticlesService } from './../../../services/articles.service';
 import { SingleArticle } from './../../../models/single_article';
 import { Component, Input, OnInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-articles',
@@ -8,9 +11,24 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ArticlesComponent implements OnInit {
   @Input('article') article: SingleArticle
-  constructor() { }
+  comments = []
+
+  constructor(private commentsService: CommentsService) { }
 
   ngOnInit(): void {
+    this.commentsService.getCommentBySlug(this.article['slug']).subscribe(res => {
+      this.comments = res['comments']
+    })
   }
+
+  onComment() {
+  }
+
+  addNewComment($event) {
+    this.commentsService.getCommentBySlug(this.article['slug']).subscribe(res => {
+      this.comments = res['comments']
+    })
+  }
+
 
 }

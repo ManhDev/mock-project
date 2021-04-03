@@ -11,4 +11,8 @@ export class CommentsService {
   getCommentBySlug(slug: string) {
     return this.http.get(this.url_base + '/articles/' + slug + '/comments')
   }
+
+  addCommentBySlug(slug: string, comment: any) {
+    return this.http.post(this.url_base + '/articles/' + slug + '/comments', comment)
+  }
 }

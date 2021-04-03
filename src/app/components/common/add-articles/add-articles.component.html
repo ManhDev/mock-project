@@ -1,5 +1,5 @@
 <div class="new-articles shadow bg-white p-2 rounded">
-    <form [formGroup]="articleForm" (ngSubmit)="onCreate()">
+    <form [formGroup]="articleForm" (ngSubmit)="postMyArticle()">
         <div class="form-group">
             <input type="text" class="form-control py-3" placeholder="Article title" formControlName="title">
         </div>

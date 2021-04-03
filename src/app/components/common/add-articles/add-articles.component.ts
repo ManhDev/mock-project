@@ -1,6 +1,7 @@
+import { SingleArticle } from './../../../models/single_article';
 import { ArticlesService } from './../../../services/articles.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,8 +10,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./add-articles.component.scss']
 })
 export class AddArticlesComponent implements OnInit {
-  myArticle: any;
-  articleForm: FormGroup
+  globalArticles: SingleArticle[]
+  articleForm: FormGroup;
+
+
+
   constructor(private articleService: ArticlesService, private activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
@@ -22,13 +26,16 @@ export class AddArticlesComponent implements OnInit {
     })
   }
 
-  onCreate() {
-    let article = { article: { author: { username: "doanmanh" }, ...this.articleForm.value } }
-    article.article['tagList'] = article.article['tagList'].split(" ");
-    this.articleService.addNewArticle(article).subscribe(res => {
-      this.myArticle = res
-    });
-    this.activeModal.close();
+  postMyArticle() {
+    let article = { article: { ...this.articleForm.value } }
+    if (article.article['tagList'] === null) {
+      article.article['tagList'] = null
+    }
+    else {
+      article.article['tagList'] = article.article['tagList'].split(" ");
+    }
+    this.articleService.addNewArticle(article).subscribe(myArticle => { });
+    this.activeModal.close('true');
   }
 
 }

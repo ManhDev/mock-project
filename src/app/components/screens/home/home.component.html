@@ -1,8 +1,11 @@
 <div class="mt-4">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                <app-add-new *ngIf="authService.isLogIn()"></app-add-new>
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6">
+                <app-add-new *ngIf="authService.isLogIn()" (isPost)="getDataGlobal($event)"></app-add-new>
                 <ul class="nav mb-3">
                     <li class="nav-item custom-pointer" *ngIf="authService.isLogIn()" (click)="feedView()">
                         <a class="font-custom nav-link" [class.active]="mode === 'myfeed'">Bảng Tin</a>

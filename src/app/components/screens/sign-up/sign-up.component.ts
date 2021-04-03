@@ -34,11 +34,10 @@ export class SignUpComponent implements OnInit {
         ...this.formSignUp.value
       }
     }
+
     this.authService.signUp(user).subscribe(
       res => { this.authService.logUserIn(res) },
-
       (error: HttpErrorResponse) => {
-
         error.error['errors']['username'] ? this.errUserName = true : this.errUserName = false;
         error.error['errors']['email'] ? this.errEmail = true : this.errEmail = false;
         if (!this.errUserName && !this.errEmail) {
@@ -47,7 +46,6 @@ export class SignUpComponent implements OnInit {
         else {
           this.hasError = true
         }
-
       }
     )
   }

@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
     if (this.authService.isLogIn()) {
       this.articleService.getMyFeedArticles().subscribe((res: { articles: SingleArticle[], articlesCount: number }) => {
         this.feedArticles = res.articles;
-        this.mode = "myfeed"
       })
     }
     this.articleService.getArticles().subscribe((res: { articles: SingleArticle[], articlesCount: number }) => {
@@ -27,11 +26,13 @@ export class HomeComponent implements OnInit {
     })
   }
 
-
-
-
-
   feedView() { this.mode = 'myfeed' };
   globalView() { this.mode = 'global' }
+
+  getDataGlobal($event) {
+    this.articleService.getArticles().subscribe((res: { articles: SingleArticle[], articlesCount: number }) => {
+      this.globalArticles = res.articles;
+    })
+  }
 
 }
