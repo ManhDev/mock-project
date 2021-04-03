@@ -9,15 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail-article.component.scss']
 })
 export class DetailArticleComponent implements OnInit {
-  articleDetails: Article
+  articleDetails = {} as Article;
   constructor(private articlesService: ArticlesService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(res =>
-      this.articlesService.getDetailsAriticle(res.id).subscribe((data: Article) => {
-        this.articleDetails = data
-        console.log(this.articleDetails);
-
+      this.articlesService.getDetailsAriticle(res.id).subscribe((data: { article: Article }) => {
+        this.articleDetails = data.article
       }))
   }
 

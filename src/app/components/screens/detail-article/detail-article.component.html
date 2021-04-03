@@ -1,14 +1,14 @@
 <div class="bg">
   <div class="container py-5">
     <div class="row my-4">
-      <h3>{{articleDetails.article.title}}</h3>
+      <h3>{{articleDetails['title']}}</h3>
     </div>
     <div class="row d-flex">
       <img class="mr-3" src="https://static.productionready.io/images/smiley-cyrus.jpg" alt="" width="40px"
         height="40px" />
       <div class="mr-3">
-        <p>{{articleDetails.article.author['username']}}</p>
-        <p>{{articleDetails.article.createdAt |date :'short'}}</p>
+        <p>{{articleDetails.author?.username}}</p>
+        <p>{{articleDetails.createdAt |date :'short'}}</p>
       </div>
       <div class="p-2">
         <button type="button" class="btn btn-outline-secondary mr-2">
@@ -33,10 +33,10 @@
 </div>
 <div class="container mb-5 mt-5 pb-5 border-bottom">
   <div class="my-4">
-    <p>{{articleDetails.article.body}}</p>
+    <p>{{articleDetails.body}}</p>
   </div>
   <div>
-    <ng-container *ngFor="let tag of articleDetails.article.tagList">
+    <ng-container *ngFor="let tag of articleDetails.tagList">
       <span class="badge bg-secondary">{{tag}}</span>
     </ng-container>
   </div>

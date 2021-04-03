@@ -12,7 +12,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ArticlesComponent implements OnInit {
   @Input('article') article: Article
-  comments: Comment[] = []
+  comments: Comment[] = [];
+  focusComment: boolean;
 
   constructor(private commentsService: CommentsService) { }
 
@@ -30,6 +31,7 @@ export class ArticlesComponent implements OnInit {
 
 
   onComment() {
+    this.focusComment = true;
   }
 
 }
