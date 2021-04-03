@@ -12,16 +12,12 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-
-    let user = localStorage.getItem('user') || null;
-    if (user) {
-      user = JSON.parse(user)
-      let token = user['user']['token']
-
+    if (this.authService.currentUser) {
+      let token = this.authService.currentUser['user']['token']
       let authRequest = request.clone({
         headers: new HttpHeaders({
           Authorization: `Token ${token}`

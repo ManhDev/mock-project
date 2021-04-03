@@ -1,4 +1,4 @@
-import { SingleArticle } from './../../../models/single_article';
+import { Article } from '../../../models/article';
 import { ArticlesService } from './../../../services/articles.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, EventEmitter } from '@angular/core';
@@ -10,10 +10,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./add-articles.component.scss']
 })
 export class AddArticlesComponent implements OnInit {
-  globalArticles: SingleArticle[]
+  globalArticles: Article[]
   articleForm: FormGroup;
-
-
 
   constructor(private articleService: ArticlesService, private activeModal: NgbActiveModal) { }
 

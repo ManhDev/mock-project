@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   url_base = "https://conduit.productionready.io/";
-  currentUser: User;
+
+  currentUser: any;
+
   loggedIn = null;
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -20,6 +22,7 @@ export class AuthService {
     }
     let user = localStorage.getItem('user');
     if (!!user) {
+      this.currentUser = JSON.parse(user)
       this.loggedIn = true;
       return true
     }
@@ -52,8 +55,7 @@ export class AuthService {
 
   logUserIn(user) {
     this.loggedIn = true
-    this.currentUser = user;
-    this.saveToLocalStrorage('user', this.currentUser);
+    this.saveToLocalStrorage('user', user);
     this.router.navigate([''])
   }
 
