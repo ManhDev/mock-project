@@ -1,4 +1,4 @@
-import { SingleArticle } from './../../../models/single_article';
+import { Article } from '../../../models/article';
 import { CommentsService } from './../../../services/comments.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
@@ -9,7 +9,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./add-comment.component.scss']
 })
 export class AddCommentComponent implements OnInit {
-  @Input('article') article: SingleArticle;
+  @Input('article') article: Article;
   @Output('mycomment') mycomment: EventEmitter<any> = new EventEmitter<any>()
 
   comment = new FormControl('', Validators.required)
@@ -21,7 +21,7 @@ export class AddCommentComponent implements OnInit {
     let newComment = {
       comment: { body: this.comment.value }
     }
-    this.commentsService.addCommentBySlug(this.article['slug'], newComment).subscribe(res => {
+    this.commentsService.addCommentBySlug(this.article.slug, newComment).subscribe(res => {
       this.mycomment.emit(res)
       this.comment.reset()
     })

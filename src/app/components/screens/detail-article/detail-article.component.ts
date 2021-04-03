@@ -1,5 +1,5 @@
-import { SingleArticle } from './../../../models/single_article';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { Article } from './../../../models/article';
+import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from './../../../services/articles.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,12 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail-article.component.scss']
 })
 export class DetailArticleComponent implements OnInit {
-  articleDetails: SingleArticle
+  articleDetails: Article
   constructor(private articlesService: ArticlesService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(res =>
-      this.articlesService.getDetailsAriticle(res.id).subscribe((data: SingleArticle) => {
+      this.articlesService.getDetailsAriticle(res.id).subscribe((data: Article) => {
         this.articleDetails = data
         console.log(this.articleDetails);
 

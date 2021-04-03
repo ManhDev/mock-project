@@ -9,14 +9,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./add-new.component.scss']
 })
 export class AddNewComponent implements OnInit {
-  user: any;
+  @Input('user') user: any
   @Output('isPost') isPost: EventEmitter<boolean> = new EventEmitter<boolean>()
-  constructor(private modalService: NgbModal) {
 
+  constructor(private modalService: NgbModal) {
   }
   ngOnInit(): void {
-    let userLocal = localStorage.getItem('user')
-    this.user = JSON.parse(userLocal)
     if (this.user['user']['image'] === null) {
       this.user['user']['image'] = 'https://brighterwriting.com/wp-content/uploads/icon-user-default-420x420.png'
     }
