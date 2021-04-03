@@ -1,3 +1,5 @@
+import { User } from './../models/user';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -7,11 +9,10 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   url_base = "https://conduit.productionready.io/";
-  currentUser: any;
+  currentUser: User;
   loggedIn = null;
 
   constructor(private http: HttpClient, private router: Router) { }
-
 
   isLogIn(): boolean {
     if (this.loggedIn !== null) {
@@ -26,8 +27,8 @@ export class AuthService {
     return false
   }
 
-  signUp(user) {
-    return this.http.post(this.url_base + 'api/users', user);
+  signUp(user): Observable<User> {
+    return this.http.post(this.url_base + 'api/users', user) as Observable<User>;
   }
 
   signIn(user) {

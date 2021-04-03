@@ -1,0 +1,8 @@
+<div class="d-flex align-items-stretch">
+    <img src="https://static.productionready.io/images/smiley-cyrus.jpg" alt="" width="30" height="30"
+        class="rounded-circle">
+    <div class="ml-2 flex-grow-1">
+        <input type="text" class="rounded-pill py-1 px-2 border-0 custom-input bg-light w-100 "
+            placeholder="Add comment" [formControl]="comment" (keyup.enter)="addComment()">
+    </div>
+</div>
