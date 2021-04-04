@@ -1,9 +1,6 @@
 <div class="header px-5">
-
-
-
   <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand text-white" routerLink="">conduit</a>
+    <a class="navbar-brand text-dark" routerLink="">conduit</a>
     <button class="navbar-toggler" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,15 +11,15 @@
       </form>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" [class.d-none]="authService.isLogIn()">
-          <a class="nav-link text-white" routerLink="login">Sign In</a>
+          <a class="nav-link text-dark" routerLink="login">Sign In</a>
         </li>
         <li class="nav-item" [class.d-none]="authService.isLogIn()">
-          <a class="nav-link text-white" routerLink="sign-up">Sign Up</a>
+          <a class="nav-link text-dark" routerLink="sign-up">Sign Up</a>
         </li>
         <li class="nav-item" *ngIf="authService.isLogIn()">
           <div class="dropdown">
-            <button class="btn text-white dropdown-toggle">User</button>
-            <div class="pd-0 mr-0 show dropdown-menu dropdown-menu-lg-end">
+            <button class="btn text-dark dropdown-toggle">User</button>
+            <div class="pd-0 mr-0 show dropdown-menu dropdown-menu-lg-end" style="min-width: 8rem;">
               <a class="dropdown-item" routerLink="/profile">Profile</a>
               <a class="dropdown-item">Settings</a>
               <a class="dropdown-item" (click)="onLogOut()">Log out</a>

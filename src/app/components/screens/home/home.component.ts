@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   mode = "global";
-  userData
+  userData: any = {};
   globalArticles: Article[] = [];
   feedArticles: Article[] = [];
 

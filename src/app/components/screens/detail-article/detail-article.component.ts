@@ -1,3 +1,4 @@
+import { CommentsService } from './../../../services/comments.service';
 import { Article } from './../../../models/article';
 import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from './../../../services/articles.service';
@@ -10,13 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailArticleComponent implements OnInit {
   articleDetails = {} as Article;
-  constructor(private articlesService: ArticlesService, private route: ActivatedRoute) { }
+  comments = []
+  constructor(private articlesService: ArticlesService, private route: ActivatedRoute, private commentsService: CommentsService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(res =>
       this.articlesService.getDetailsAriticle(res.id).subscribe((data: { article: Article }) => {
-        this.articleDetails = data.article
+        this.articleDetails = data.article;
+        this.commentsService.getCommentBySlug(this.articleDetails.slug).subscribe(res => {
+          this.comments = res['comments']
+        })
       }))
   }
+
+  addNewComment($event) {
+    this.commentsService.getCommentBySlug(this.articleDetails.slug).subscribe(res => {
+      this.comments = res['comments']
+    })
+  }
+
+  onComment() { }
 
 }

@@ -1,18 +1,25 @@
 <div class="card border-0 shadow p-3 mb-5 bg-white rounded">
     <div class="card-body p-0">
+        <!-- information user -->
         <div class="d-flex mb-2">
             <div class="mr-2">
-                <img src="{{article['author']['image']}}" alt="" width="50" height="50px"
-                    class="rounded-circle custom-pointer">
+                <a routerLink="/profile/{{article['author'].username}}" class="custom-pointer">
+                    <img src="{{article['author']['image']}}" alt="" width="50" height="50px" class="rounded-circle">
+                </a>
             </div>
             <div>
                 <h5 class="custom-pointer">{{article['author'].username}}</h5>
                 <p class="time-custom">{{article['createdAt'] | date:"short"}}</p>
             </div>
         </div>
-        <a class="card-title mb-0 custom-pointer font-weight-bold text-decoration-none text-dark"
-            routerLink="details/{{article['slug']}}">{{article['title']}}</a>
-        <p class="card-text">{{article['body'] | bodyCustom}}.</p>
+
+        <!-- content article -->
+        <div>
+            <a class="card-title mb-0 custom-pointer font-weight-bold text-decoration-none text-dark"
+                routerLink="details/{{article['slug']}}">{{article['title']}}</a>
+            <p class="card-text">{{article['body'] | bodyCustom}}.</p>
+        </div>
+
         <div class="row border-top border-bottom mx-0 my-2">
             <div class="col-md-4 text-center">
                 <button class="custom-button bg-white p-2">
@@ -43,12 +50,14 @@
 
         <h6 class="custom-pointer mb-2">Xem thêm bình luận...</h6>
 
-        <app-comment [comments]="comments"></app-comment>
-
+        <!-- show and add comments -->
+        <div>
+            <app-comment [comments]="comments"></app-comment>
+        </div>
         <div class="add-commnet">
             <app-add-comment [article]="article" (mycomment)="addNewComment($event)">
             </app-add-comment>
         </div>
-    </div>
 
+    </div>
 </div>
