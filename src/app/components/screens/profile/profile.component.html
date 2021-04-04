@@ -1,9 +1,14 @@
-<div class="container-fluid p-0">
-  <div class="bg-gradient text-center p-5">
-    <img src="https://static.productionready.io/images/smiley-cyrus.jpg" alt="image.jpg" class="mt-2" />
-    <h4 class="mt-3">Dogg11</h4>
+<div class="bg-gradient text-center py-4" style="min-height: 380px;">
+  <div class="container">
+    <div>
+      <img src="{{userData.image}}" class="mt-2 border rounded-circle border-white"
+        style="border-width: 5px !important;" width="250" height="250" />
+      <h4 class="mt-3">{{userData.username}}</h4>
+    </div>
+
     <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-outline-dark" routerLink="settings">
+      <a class="btn btn-outline-dark mr-2" routerLink="/profile/settings"
+        *ngIf="userData.username === authService.currentUser.username">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"
           viewBox="0 0 16 16">
           <path
@@ -12,128 +17,61 @@
             d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
         </svg>
         <span> Edit Profile Setting </span>
-      </button>
-    </div>
-  </div>
-  <div class="row m-0">
-    <div class="col-3"></div>
-    <div class="col-6 pt-3">
+      </a>
 
-      <app-add-new></app-add-new>
+      <a class="btn btn-outline-dark " *ngIf="userData.username !== authService.currentUser.username">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
+          viewBox="0 0 16 16">
+          <path
+            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+        Follow user
+      </a>
+    </div>
 
-      <ul class="nav mt-5">
-        <li class="nav-item">
-          <a class="font-custom nav-link" [class.active]="mode === 'myArticles'" (click)="myArticles()">My Articles</a>
-        </li>
-        <li class="nav-item">
-          <a class="font-custom nav-link" [class.active]="mode === 'favoritedArticles'"
-            (click)="favoritedArticles()">Favorited
-            Articles</a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-3"></div>
+
   </div>
-  <div class="row m-0">
-    <div class="col-3"></div>
-    <div class="col-6">
-      <div class="mt-4" *ngIf="mode === 'myArticles'">
-        <div class="card border-0 shadow p-0 mb-5 bg-white rounded">
-          <div class="card-body p-2">
-            <div class="d-flex mb-3">
-              <div class="mr-2">
-                <img src="https://dummyimage.com/5*5/8f848f/5b5b5e.jpg&text=10*10" alt="" />
-              </div>
-              <div>
-                <h5>Name</h5>
-                <p>Time</p>
-              </div>
-            </div>
-            <h6 class="card-title mb-0">Title</h6>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <div class="row mt-3 d-flex justify-content-around">
-              <div class="col-md-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                </svg>
-                like
-              </div>
-              <div class="col-md-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path
-                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                  <path fill-rule="evenodd"
-                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                </svg>
-                comment
-              </div>
-              <div class="col-md-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
-                </svg>
-                share
-              </div>
-            </div>
-          </div>
-        </div>
+</div>
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6">
+
+      <div *ngIf="authService.isLogIn()">
+        <app-add-new [user]="userData"></app-add-new>
       </div>
-      <div class="mt-4" *ngIf="mode === 'favoritedArticles'">
-        <div class="card border-0 shadow p-0 mb-5 bg-white rounded">
-          <div class="card-body p-2">
-            <div class="d-flex mb-3">
-              <div class="mr-2">
-                <img src="https://dummyimage.com/5*5/8f848f/5b5b5e.jpg&text=10*10" alt="" />
-              </div>
-              <div>
-                <h5>Name favo</h5>
-                <p>Time</p>
-              </div>
-            </div>
-            <h6 class="card-title mb-0">Title</h6>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <div class="row mt-3 d-flex justify-content-around">
-              <div class="col-md-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                </svg>
-                like
-              </div>
-              <div class="col-md-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path
-                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                  <path fill-rule="evenodd"
-                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                </svg>
-                comment
-              </div>
-              <div class="col-md-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
-                </svg>
-                share
-              </div>
-            </div>
-          </div>
-        </div>
+
+      <div class="mb-3">
+        <ul class="nav">
+          <li class="nav-item custom-pointer">
+            <a class="nav-link font-custom" [class.active]="mode === 'myArticles'" (click)="myArticles()">My
+              Articles</a>
+          </li>
+          <li class="nav-item custom-pointer">
+            <a class="nav-link font-custom " [class.active]="mode === 'favoritedArticles'"
+              (click)="favoritedArticles()">Favorited
+              Articles</a>
+          </li>
+        </ul>
       </div>
+
+      <div *ngIf="mode ==='myArticles'">
+        <ng-container *ngFor="let article of myarticles">
+          <app-articles [article]="article"></app-articles>
+        </ng-container>
+      </div>
+
+      <div *ngIf="mode ==='favoritedArticles'">
+        <ng-container *ngFor="let article of myfavoritedArticles">
+          <app-articles [article]="article"></app-articles>
+        </ng-container>
+      </div>
+
+
     </div>
-    <div class="col-3"></div>
+
+    <div class="col-md-3"></div>
   </div>
 </div>

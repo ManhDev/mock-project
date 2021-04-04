@@ -1,7 +1,9 @@
+import { User } from './../../../models/user';
 import { Article } from './../../../models/article';
 import { ArticlesService } from './../../../services/articles.service';
 import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+
 
 
 @Component({
@@ -11,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   mode = "global";
-  userData: any = {};
+  userData = {} as User;
   globalArticles: Article[] = [];
   feedArticles: Article[] = [];
 
@@ -19,10 +21,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
     if (this.authService.isLogIn()) {
       this.userData = this.authService.currentUser;
+
       this.articleService.getMyFeedArticles().subscribe((res: { articles: Article[], articlesCount: number }) => {
         this.feedArticles = res.articles;
       })
