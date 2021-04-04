@@ -2,18 +2,17 @@ import { AddArticlesComponent } from './../add-articles/add-articles.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-
 @Component({
   selector: 'app-add-new',
   templateUrl: './add-new.component.html',
   styleUrls: ['./add-new.component.scss']
 })
 export class AddNewComponent implements OnInit {
-  @Input('user') user: any
+  @Input('user') user: any = {}
   @Output('isPost') isPost: EventEmitter<boolean> = new EventEmitter<boolean>()
 
-  constructor(private modalService: NgbModal) {
-  }
+  constructor(private modalService: NgbModal) { }
+
   ngOnInit(): void {
     if (this.user['user']['image'] === null) {
       this.user['user']['image'] = 'https://brighterwriting.com/wp-content/uploads/icon-user-default-420x420.png'

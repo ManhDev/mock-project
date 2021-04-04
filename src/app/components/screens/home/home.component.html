@@ -1,12 +1,15 @@
 <div class="mt-4">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3"></div>
 
-            </div>
+            <!-- home display -->
             <div class="col-md-6">
+                <!-- add new article -->
                 <app-add-new *ngIf="authService.isLogIn()" [user]="userData" (isPost)="getDataGlobal($event)">
                 </app-add-new>
+
+                <!-- nav feed -->
                 <ul class="nav mb-3">
                     <li class="nav-item custom-pointer" *ngIf="authService.isLogIn()" (click)="feedView()">
                         <a class="font-custom nav-link" [class.active]="mode === 'myfeed'">Bảng Tin</a>
@@ -15,6 +18,7 @@
                         <a class="font-custom nav-link" [class.active]="mode === 'global'">Cộng đồng</a>
                     </li>
                 </ul>
+                <!-- show feed -->
                 <div>
                     <div *ngIf="mode === 'global'">
                         <ng-container *ngFor="let article of globalArticles">
@@ -32,14 +36,15 @@
                     </div>
                 </div>
             </div>
+
+            <!-- show tag popular -->
             <div class="col-md-3">
                 <div class="bg-light p-2">
                     <p>Popular Tags</p>
                     <span class="badge badge-secondary">Secondary</span>
                 </div>
             </div>
+
         </div>
-
-
     </div>
 </div>
