@@ -3,21 +3,24 @@
         <!-- information user -->
         <div class="d-flex mb-2">
             <div class="mr-2">
-                <a routerLink="/profile/{{article['author'].username}}" class="custom-pointer">
-                    <img src="{{article['author']['image']}}" alt="" width="50" height="50px" class="rounded-circle">
+                <a routerLink="/profile/{{article.author.username}}" class="custom-pointer">
+                    <img src="{{article.author.image}}" alt="" width="50" height="50px" class="rounded-circle">
                 </a>
             </div>
             <div>
-                <h5 class="custom-pointer">{{article['author'].username}}</h5>
-                <p class="time-custom">{{article['createdAt'] | date:"short"}}</p>
+                <h5>
+                    <a routerLink="/profile/{{article.author.username}}"
+                        class="text-dark text-decoration-none">{{article.author.username}}</a>
+                </h5>
+                <p class="time-custom">{{article.createdAt | date:"short"}}</p>
             </div>
         </div>
 
         <!-- content article -->
         <div>
             <a class="card-title mb-0 custom-pointer font-weight-bold text-decoration-none text-dark"
-                routerLink="details/{{article['slug']}}">{{article['title']}}</a>
-            <p class="card-text">{{article['body'] | bodyCustom}}.</p>
+                routerLink="details/{{article['slug']}}">{{article.title}}</a>
+            <p class="card-text">{{article.body| bodyCustom}}.</p>
         </div>
 
         <div class="row border-top border-bottom mx-0 my-2">

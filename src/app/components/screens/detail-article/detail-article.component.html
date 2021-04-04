@@ -5,11 +5,14 @@
     <div class="col-md-6 shadow-lg p-3 mb-5 bg-white rounded">
       <div class="d-flex mb-3">
         <!-- avatar -->
-        <img class="rounded-circle" src="https://static.productionready.io/images/smiley-cyrus.jpg" alt="" width="33px"
-          height="33px" />
+        <a routerLink="/profile/{{articleDetails.author.username}}">
+          <img class="rounded-circle" src="https://static.productionready.io/images/smiley-cyrus.jpg" alt=""
+            width="33px" height="33px" />
+        </a>
         <!-- information User -->
         <div class="ml-2">
-          <h6>{{articleDetails.author?.username}}</h6>
+          <h6><a routerLink="/profile/{{articleDetails.author.username}}"
+              class="text-dark text-decoration-none">{{articleDetails.author.username}}</a></h6>
           <p>{{articleDetails.createdAt |date :'short'}}</p>
         </div>
         <!-- follow functionality -->
@@ -34,7 +37,7 @@
         </div>
       </div>
       <!-- content article -->
-      <h5 class="mb-1">{{articleDetails['title']}}</h5>
+      <p class="mb-1 font-weight-bold">{{articleDetails.title}}</p>
       <p class="mb-2">{{articleDetails.body}}</p>
 
       <ng-container *ngFor="let tag of articleDetails.tagList">
@@ -77,6 +80,8 @@
         <app-add-comment [article]="articleDetails" (mycomment)="addNewComment($event)"></app-add-comment>
       </div>
     </div>
+
+
 
     <div class="col-md-3"></div>
   </div>

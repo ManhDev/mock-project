@@ -4,14 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   url_base = "https://conduit.productionready.io/";
-
-  currentUser: any;
-
+  currentUser: User;
   loggedIn = null;
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -35,7 +35,16 @@ export class AuthService {
   }
 
   signIn(user) {
-    return this.http.post(this.url_base + 'api/users/login', user)
+    return new Promise<void>((resolve, reject) => {
+      this.http.post(this.url_base + 'api/users/login', user).subscribe(
+        (res: { user: User }) => {
+          this.logUserIn(res.user);
+          resolve();
+        },
+        (err => { reject(err) })
+      )
+
+    })
   }
 
   logOut() {
@@ -56,7 +65,6 @@ export class AuthService {
   logUserIn(user) {
     this.loggedIn = true
     this.saveToLocalStrorage('user', user);
-    this.router.navigate([''])
   }
 
 }

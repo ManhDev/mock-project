@@ -13,9 +13,15 @@
                         Email is incorrect
                     </div>
                 </ng-container>
+
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Enter password" formControlName="password">
                 </div>
+                <ng-container *ngIf="loginForm.controls.password.errors && loginForm.controls.password?.touched">
+                    <div class="alert alert-danger" role="alert">
+                        Password is very short (min 8 characters)
+                    </div>
+                </ng-container>
 
                 <ng-container *ngIf="error">
                     <div class="alert alert-danger" role="alert">

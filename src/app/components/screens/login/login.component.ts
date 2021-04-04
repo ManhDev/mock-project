@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { User } from './../../../models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from './../../../services/auth.service';
@@ -12,12 +13,12 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error = false;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.email]),
-      password: new FormControl()
+      password: new FormControl('', [Validators.minLength(8)])
     })
   }
   onLogin() {
@@ -27,11 +28,10 @@ export class LoginComponent implements OnInit {
       }
     }
 
-    this.authService.signIn(user).subscribe(
-      res => { this.authService.logUserIn(res) },
-      (error: HttpErrorResponse) => {
-        this.error = true
-      })
+    this.authService.signIn(user).then(() => {
+      this.router.navigate([''])
+    }).catch(err => {
+      this.error = true
+    })
   }
-
 }
