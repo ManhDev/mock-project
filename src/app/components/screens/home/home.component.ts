@@ -5,7 +5,6 @@ import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,21 +15,27 @@ export class HomeComponent implements OnInit {
   userData = {} as User;
   globalArticles: Article[] = [];
   feedArticles: Article[] = [];
+  page: number = 1;
+  offset = 0;
+  limit: number = 10;
+  globaltotalItems = 0;
+  feedtotalItems = 0
 
   constructor(public authService: AuthService, private articleService: ArticlesService) { }
 
   ngOnInit(): void {
 
+
     if (this.authService.isLogIn()) {
       this.userData = this.authService.currentUser;
-
-      this.articleService.getMyFeedArticles().subscribe((res: { articles: Article[], articlesCount: number }) => {
+      this.articleService.getMyFeedArticles(this.limit, this.offset).subscribe((res: { articles: Article[], articlesCount: number }) => {
         this.feedArticles = res.articles;
+        this.feedtotalItems = res.articlesCount
       })
-
     }
-    this.articleService.getArticles().subscribe((res: { articles: Article[], articlesCount: number }) => {
+    this.articleService.getArticles(this.limit, this.offset).subscribe((res: { articles: Article[], articlesCount: number }) => {
       this.globalArticles = res.articles;
+      this.globaltotalItems = res.articlesCount;
     })
   }
 
@@ -38,9 +43,23 @@ export class HomeComponent implements OnInit {
   globalView() { this.mode = 'global' }
 
   getDataGlobal($event) {
-    this.articleService.getArticles().subscribe((res: { articles: Article[], articlesCount: number }) => {
+    this.articleService.getArticles(this.limit, this.offset).subscribe((res: { articles: Article[], articlesCount: number }) => {
       this.globalArticles = res.articles;
     })
   }
 
+  onPageChange($event) {
+    this.offset = ($event - 1) * this.limit;
+    if (this.mode == "global") {
+      this.articleService.getArticles(this.limit, this.offset).subscribe((res: { articles: Article[], articlesCount: number }) => {
+        this.globalArticles = res.articles;
+      })
+    }
+    if (this.mode == 'myfeed') {
+      this.articleService.getMyFeedArticles(this.limit, this.offset).subscribe((res: { articles: Article[], articlesCount: number }) => {
+        this.feedArticles = res.articles;
+      })
+    }
+
+  }
 }

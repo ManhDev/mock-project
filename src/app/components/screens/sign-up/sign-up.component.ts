@@ -1,3 +1,4 @@
+import { User } from './../../../models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
@@ -11,9 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
   formSignUp: FormGroup;
-  hasError: boolean;
-  errEmail: boolean;
-  errUserName: boolean;
+  hasError: boolean = false;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -36,18 +35,18 @@ export class SignUpComponent implements OnInit {
     }
 
     this.authService.signUp(user).subscribe(
-      res => { this.authService.logUserIn(res) },
+      (res: User) => {
+        let userMock = { user: { email: this.formSignUp.value.email, password: this.formSignUp.value.password } }
+        this.authService.signIn(userMock).then(() => { this.router.navigate(['']) }).catch(err => console.log(err))
+      },
       (error: HttpErrorResponse) => {
-        error.error['errors']['username'] ? this.errUserName = true : this.errUserName = false;
-        error.error['errors']['email'] ? this.errEmail = true : this.errEmail = false;
-        if (!this.errUserName && !this.errEmail) {
-          this.hasError = false
-        }
-        else {
-          this.hasError = true
-        }
+        this.hasError = true;
       }
     )
+
+    // this.authService.signUp(user).then(() => {
+    //   this.router.navigate([''])
+    // }).catch(err => this.hasError = true)
   }
 
 }

@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,8 +18,8 @@ export class AuthService {
     if (this.loggedIn !== null) {
       return this.loggedIn
     }
-    let user = localStorage.getItem('user');
-    if (!!user) {
+    let user = localStorage.getItem('user') || null;
+    if (user !== null) {
       this.currentUser = JSON.parse(user)
       this.loggedIn = true;
       return true
@@ -38,19 +36,19 @@ export class AuthService {
     return new Promise<void>((resolve, reject) => {
       this.http.post(this.url_base + 'api/users/login', user).subscribe(
         (res: { user: User }) => {
-          this.logUserIn(res.user);
+          this.currentUser = res.user;
+          this.loggedIn = true;
+          this.saveToLocalStrorage('user', res.user)
           resolve();
         },
         (err => { reject(err) })
       )
-
     })
   }
 
   logOut() {
     localStorage.removeItem('user');
     this.loggedIn = false;
-    this.router.navigate(['']);
   }
 
   saveToLocalStrorage(key, value) {
@@ -60,11 +58,6 @@ export class AuthService {
       localStorage.removeItem(key);
     }
     localStorage.setItem(key, value)
-  }
-
-  logUserIn(user) {
-    this.loggedIn = true
-    this.saveToLocalStrorage('user', user);
   }
 
 }
