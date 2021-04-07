@@ -39,8 +39,8 @@
 
     <div class="col-md-6">
 
-      <div *ngIf="authService.isLogIn()">
-        <app-add-new [user]="userData"></app-add-new>
+      <div *ngIf="authService.isLogIn() && authService.currentUser.username === userData.username">
+        <app-add-new [user]="userData" (isPost)="getMyArticle($event)"></app-add-new>
       </div>
 
       <div class="mb-3">
@@ -64,6 +64,9 @@
       </div>
 
       <div *ngIf="mode ==='favoritedArticles'">
+        <div *ngIf="myfavoritedArticles.length === 0" class="border-0 shadow p-3 bg-white rounded">
+          No articles are here... yet.
+        </div>
         <ng-container *ngFor="let article of myfavoritedArticles">
           <app-articles [article]="article"></app-articles>
         </ng-container>

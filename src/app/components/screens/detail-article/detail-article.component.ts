@@ -19,7 +19,6 @@ export class DetailArticleComponent implements OnInit {
       this.articlesService.getDetailsAriticle(res.id).subscribe((data: { article: Article }) => {
         this.articleDetails = data.article;
 
-
         this.commentsService.getCommentBySlug(this.articleDetails.slug).subscribe(res => {
           this.comments = res['comments']
         })

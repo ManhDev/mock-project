@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.email]),
-      password: new FormControl('', [Validators.minLength(8)])
+      email: new FormControl('doanmanhvp@gmail.com', [Validators.email]),
+      password: new FormControl('doanmanh1996', [Validators.minLength(8)])
     })
   }
   onLogin() {
@@ -30,8 +30,9 @@ export class LoginComponent implements OnInit {
 
     this.authService.signIn(user).then(() => {
       this.router.navigate([''])
-    }).catch(err => {
-      this.error = true
     })
+      .catch((err) => {
+        this.error = true
+      })
   }
 }

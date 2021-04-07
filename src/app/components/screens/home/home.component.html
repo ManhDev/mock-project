@@ -24,6 +24,10 @@
                         <ng-container *ngFor="let article of globalArticles">
                             <app-articles [article]="article"></app-articles>
                         </ng-container>
+
+                        <ngb-pagination [collectionSize]="globaltotalItems" (pageChange)="onPageChange($event)"
+                            [(page)]="page" [maxSize]="limit" [boundaryLinks]="true" [rotate]="true" [ellipses]="false">
+                        </ngb-pagination>
                     </div>
 
                     <div *ngIf="mode === 'myfeed'">
@@ -33,8 +37,15 @@
                         <ng-container *ngFor="let article of feedArticles">
                             <app-articles [article]="article"></app-articles>
                         </ng-container>
+
+                        <ngb-pagination *ngIf="feedArticles.length>0" [collectionSize]="feedtotalItems"
+                            (pageChange)="onPageChange($event)" [(page)]="page" [maxSize]="limit" [boundaryLinks]="true"
+                            [rotate]="true" [ellipses]="false">
+                        </ngb-pagination>
                     </div>
                 </div>
+
+
             </div>
 
             <!-- show tag popular -->

@@ -19,26 +19,35 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService, private articlesService: ArticlesService, private route: ActivatedRoute, public authService: AuthService) { }
 
   ngOnInit(): void {
+
     this.route.params.subscribe(param => {
       this.userService.getUserProfile(param.id).subscribe((profile: { profile: Profile }) => {
         this.userData = profile.profile
         if (this.userData.image === null) {
           this.userData.image = 'https://brighterwriting.com/wp-content/uploads/icon-user-default-420x420.png'
         }
-        this.articlesService.getMyArticles(param.id).subscribe((res: { articles: Article[] }) => {
-          this.myarticles = res.articles
-        })
-        this.articlesService.getMyFovaritedArticles(param.id).subscribe((res: { articles: Article[] }) => {
-          this.myfavoritedArticles = res.articles
-        })
+      })
+      this.articlesService.getMyArticles(param.id).subscribe((res: { articles: Article[] }) => {
+        this.myarticles = res.articles
+      })
+      this.articlesService.getMyFovaritedArticles(param.id).subscribe((res: { articles: Article[] }) => {
+        this.myfavoritedArticles = res.articles
       })
     })
   }
+
+
 
   myArticles(): void {
     this.mode = 'myArticles';
   }
   favoritedArticles(): void {
     this.mode = 'favoritedArticles';
+  }
+  getMyArticle($event) {
+    this.articlesService.getMyArticles(this.authService.currentUser.username).subscribe((res: { articles: Article[] }) => {
+      this.myarticles = res.articles;
+    })
+
   }
 }
