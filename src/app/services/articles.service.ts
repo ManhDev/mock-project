@@ -55,4 +55,12 @@ export class ArticlesService {
   unFollow(userName) {
     return this.http.delete(this.url_base_follow + `/${userName}/follow`, {});
   }
+
+  getTags() {
+    return this.http.get('https://conduit.productionready.io/api/tags');
+  }
+
+  getArticleByTag(tag) {
+    return this.http.get(this.url_base + '?tag=' + tag);
+  }
 }
