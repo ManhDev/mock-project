@@ -53,9 +53,11 @@ export class HomeComponent implements OnInit {
 
   feedView() {
     this.mode = 'myfeed';
+    this.chooseTag = '';
   }
   globalView() {
     this.mode = 'global';
+    this.chooseTag = '';
   }
 
   getDataGlobal($event) {
