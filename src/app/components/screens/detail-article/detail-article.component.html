@@ -27,7 +27,7 @@
         </div>
         <!-- follow functionality -->
         <div class="ml-auto">
-          <button type="button" class="btn btn-outline-secondary mr-2">
+          <!-- <button type="button" class="btn btn-outline-secondary mr-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -41,7 +41,12 @@
               />
             </svg>
             Follow user
-          </button>
+          </button> -->
+          <app-follow-btn
+            [data]="articleDetails"
+            [followed]="articleDetails.author['following']"
+            (followHandle)="followHandler($event)"
+          ></app-follow-btn>
 
           <!-- <button type="button" class="btn btn-outline-success">
             <svg
