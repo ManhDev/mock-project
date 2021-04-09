@@ -1,4 +1,4 @@
-
+import { LikeComponent } from './components/common/like/like.component';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,7 +22,6 @@ import { BodyCustomPipe } from './components/common/pipe/body-custom.pipe';
 import { DetailArticleComponent } from './components/screens/detail-article/detail-article.component';
 import { AddCommentComponent } from './components/common/add-comment/add-comment.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,12 +37,14 @@ import { AddCommentComponent } from './components/common/add-comment/add-comment
     BodyCustomPipe,
     DetailArticleComponent,
     AddCommentComponent,
-
+    LikeComponent,
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule, HttpClientModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [
     {
@@ -54,4 +55,4 @@ import { AddCommentComponent } from './components/common/add-comment/add-comment
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
