@@ -7,7 +7,12 @@
 
     <div class="collapse navbar-collapse">
       <form class="form-inline">
-        <input class="border-custom form-control" type="search" placeholder="Search" aria-label="Search" />
+        <input
+          class="border-custom form-control"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
       </form>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" [class.d-none]="authService.isLogIn()">
@@ -19,7 +24,10 @@
         <li class="nav-item" *ngIf="authService.isLogIn()">
           <div class="dropdown">
             <button class="btn text-dark dropdown-toggle">User</button>
-            <div class="pd-0 mr-0 show dropdown-menu dropdown-menu-lg-end" style="min-width: 8rem;">
+            <div
+              class="pd-0 mr-0 show dropdown-menu dropdown-menu-lg-end"
+              style="min-width: 8rem"
+            >
               <a class="dropdown-item" routerLink="/profile">Profile</a>
               <a class="dropdown-item">Settings</a>
               <a class="dropdown-item" (click)="onLogOut()">Log out</a>
@@ -29,9 +37,5 @@
       </ul>
     </div>
   </nav>
-
-
-
-
 </div>
 <router-outlet></router-outlet>
