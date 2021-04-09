@@ -59,4 +59,20 @@ export class DetailArticleComponent implements OnInit {
       });
     }
   }
+
+  followHandler(articleDetails) {
+    if (!articleDetails.author.following) {
+      this.articlesService
+        .follow(articleDetails.author.username)
+        .subscribe((res) => {
+          articleDetails.author.following = true;
+        });
+    } else {
+      this.articlesService
+        .unFollow(articleDetails.author.username)
+        .subscribe((res) => {
+          articleDetails.author.following = false;
+        });
+    }
+  }
 }

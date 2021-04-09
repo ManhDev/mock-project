@@ -21,6 +21,7 @@ import { ArticlesComponent } from './components/common/articles/articles.compone
 import { BodyCustomPipe } from './components/common/pipe/body-custom.pipe';
 import { DetailArticleComponent } from './components/screens/detail-article/detail-article.component';
 import { AddCommentComponent } from './components/common/add-comment/add-comment.component';
+import { FollowBtnComponent } from './components/common/follow-btn/follow-btn.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AddCommentComponent } from './components/common/add-comment/add-comment
     DetailArticleComponent,
     AddCommentComponent,
     LikeComponent,
+    FollowBtnComponent,
   ],
   imports: [
     BrowserModule,
