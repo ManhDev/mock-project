@@ -87,8 +87,11 @@ export class HomeComponent implements OnInit {
   }
 
   showArticleByTag(tag) {
+    // if (tag == '') {
+    //   this.chooseTag = '#';
+    // }
     this.mode = 'tagArticle';
-    this.chooseTag = tag;
+    this.chooseTag = '#' + tag;
     this.articleService.getArticleByTag(tag).subscribe((res: any) => {
       this.tagArticles = res.articles;
     });
