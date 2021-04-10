@@ -10,3 +10,17 @@
 .pointer {
   cursor: pointer;
 }
+.position-top {
+  top: 76px;
+}
+.tags span {
+  font-size: 12px !important;
+}
+.list-group {
+  .list-group-item {
+    background: none;
+  }
+  .list-group-item:hover {
+    background: #e0e0e0;
+  }
+}

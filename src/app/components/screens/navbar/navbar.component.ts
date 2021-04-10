@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
+  showDropDown = false;
   constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -16,6 +16,10 @@ export class NavbarComponent implements OnInit {
 
   onLogOut() {
     this.authService.logOut();
-    this.router.navigateByUrl('')
+    this.router.navigateByUrl('/login');
+  }
+  gotoProfile() {
+    this.router.navigate([`/profile/${this.authService.currentUser.username}`]);
+    this.showDropDown = false;
   }
 }

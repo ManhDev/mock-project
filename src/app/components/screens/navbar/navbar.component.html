@@ -1,39 +1,66 @@
-<div class="header px-5">
+<div class="header px-5 sticky-top">
   <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand text-dark" routerLink="">conduit</a>
+    <a class="navbar-brand text-dark" routerLink=""><img src="../../../../assets/logo.png" width="65"></a>
     <button class="navbar-toggler" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse">
       <form class="form-inline">
-        <input
-          class="border-custom form-control"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
+        <input class="border-custom form-control bg-light" type="search" placeholder="Search" aria-label="Search" />
       </form>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item" [class.d-none]="authService.isLogIn()">
+        <li class="nav-item" *ngIf="!authService.isLogIn()">
           <a class="nav-link text-dark" routerLink="login">Sign In</a>
         </li>
-        <li class="nav-item" [class.d-none]="authService.isLogIn()">
+        <li class="nav-item" *ngIf="!authService.isLogIn()">
           <a class="nav-link text-dark" routerLink="sign-up">Sign Up</a>
         </li>
-        <li class="nav-item" *ngIf="authService.isLogIn()">
+
+        <li class="right nav-item d-flex justify-content-between" *ngIf="authService.isLogIn()">
+
+          <div class="nav-item icon text-center bg-light rounded-circle">
+            <a class="text-dark">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="nav-item icon text-center bg-light rounded-circle">
+            <a class="text-dark">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="nav-item icon text-center bg-light rounded-circle">
+            <a class="text-dark">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-lightning-charge-fill" viewBox="0 0 16 16">
+                <path
+                  d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z" />
+              </svg>
+            </a>
+          </div>
+
+
           <div class="dropdown">
-            <button class="btn text-dark dropdown-toggle">User</button>
-            <div
-              class="pd-0 mr-0 show dropdown-menu dropdown-menu-lg-end"
-              style="min-width: 8rem"
-            >
-              <a class="dropdown-item" routerLink="/profile">Profile</a>
-              <a class="dropdown-item">Settings</a>
-              <a class="dropdown-item" (click)="onLogOut()">Log out</a>
+            <a class="btn text-dark bg-light rounded-pill dropdown-toggle font-weight-bold"
+              (click)="showDropDown = !showDropDown">{{authService.currentUser.username}}</a>
+            <div class="pd-0 mr-0 dropdown-menu dropdown-menu-lg-end px-2" [class.show]="showDropDown"
+              style="min-width: 8rem">
+              <a class="dropdown-item rounded custom-pointer" (click)="gotoProfile()">Profile</a>
+              <a class="dropdown-item rounded custom-pointer" (click)="onLogOut()">Log out</a>
             </div>
           </div>
         </li>
+
       </ul>
     </div>
   </nav>

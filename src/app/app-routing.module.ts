@@ -1,3 +1,4 @@
+import { AuthInterceptor } from './guard/auth.interceptor';
 import { DetailArticleComponent } from './components/screens/detail-article/detail-article.component';
 import { LoginGuard } from './guard/login.guard';
 import { AuthGuard } from './guard/auth.guard';
@@ -8,8 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './components/screens/profile/profile.component';
 import { HomeComponent } from './components/screens/home/home.component';
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'profile/:id', component: ProfileComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'details/:id', component: DetailArticleComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [LoginGuard] },
@@ -19,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

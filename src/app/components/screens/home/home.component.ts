@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private articleService: ArticlesService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (this.authService.isLogIn()) {
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
 
     // get tags
     this.articleService.getTags().subscribe((res: any) => {
-      this.tags = res.tags;
+      this.tags = res.tags.filter(e => JSON.stringify(e).replace(/\W/g, '').length);
     });
   }
 
@@ -87,13 +87,12 @@ export class HomeComponent implements OnInit {
   }
 
   showArticleByTag(tag) {
-    // if (tag == '') {
-    //   this.chooseTag = '#';
-    // }
     this.mode = 'tagArticle';
     this.chooseTag = '#' + tag;
     this.articleService.getArticleByTag(tag).subscribe((res: any) => {
-      this.tagArticles = res.articles;
+      this.tagArticles = res.articles
+      console.log(this.tagArticles);
+
     });
   }
 }
