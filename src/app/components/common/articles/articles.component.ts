@@ -17,14 +17,13 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private commentsService: CommentsService,
     private articleService: ArticlesService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.commentsService
       .getCommentBySlug(this.article.slug)
       .subscribe((res) => {
         this.comments = res['comments'];
-        console.log(this.comments);
       });
   }
 

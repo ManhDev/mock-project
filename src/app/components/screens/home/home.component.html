@@ -1,40 +1,28 @@
 <div class="mt-4">
   <div class="container">
     <div class="row">
-      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <div class="sticky-top position-top">
+          <app-sidebar></app-sidebar>
+        </div>
+      </div>
 
       <!-- home display -->
       <div class="col-md-6">
         <!-- add new article -->
-        <app-add-new
-          *ngIf="authService.isLogIn()"
-          [user]="userData"
-          (isPost)="getDataGlobal($event)"
-        >
+        <app-add-new *ngIf="authService.isLogIn()" [user]="userData" (isPost)="getDataGlobal($event)">
         </app-add-new>
 
         <!-- nav feed -->
         <ul class="nav mb-3">
-          <li
-            class="nav-item custom-pointer"
-            *ngIf="authService.isLogIn()"
-            (click)="feedView()"
-          >
-            <a class="font-custom nav-link" [class.active]="mode === 'myfeed'"
-              >Bảng Tin</a
-            >
+          <li class="nav-item custom-pointer" *ngIf="authService.isLogIn()" (click)="feedView()">
+            <a class="font-custom nav-link" [class.active]="mode === 'myfeed'">Bảng Tin</a>
           </li>
           <li class="nav-item custom-pointer" (click)="globalView()">
-            <a class="font-custom nav-link" [class.active]="mode === 'global'"
-              >Cộng đồng</a
-            >
+            <a class="font-custom nav-link" [class.active]="mode === 'global'">Cộng đồng</a>
           </li>
           <li class="nav-item custom-pointer" (click)="globalView()">
-            <a
-              class="font-custom nav-link"
-              [class.active]="mode === 'tagArticle'"
-              >{{ chooseTag }}</a
-            >
+            <a class="font-custom nav-link" [class.active]="mode === 'tagArticle'">{{ chooseTag }}</a>
           </li>
         </ul>
         <!-- show feed -->
@@ -44,39 +32,23 @@
               <app-articles [article]="article"></app-articles>
             </ng-container>
 
-            <ngb-pagination
-              [collectionSize]="globaltotalItems"
-              (pageChange)="onPageChange($event)"
-              [(page)]="page"
-              [maxSize]="limit"
-              [boundaryLinks]="true"
-              [rotate]="true"
-              [ellipses]="false"
-            >
+            <ngb-pagination [collectionSize]="globaltotalItems" (pageChange)="onPageChange($event)" [(page)]="page"
+              [maxSize]="limit" [boundaryLinks]="true" [rotate]="true" [ellipses]="false">
             </ngb-pagination>
           </div>
 
           <div *ngIf="mode === 'myfeed'">
-            <div
-              *ngIf="authService.isLogIn() && feedArticles.length === 0"
-              class="border-0 shadow p-3 bg-white rounded"
-            >
+            <div *ngIf="authService.isLogIn() && feedArticles.length === 0"
+              class="border-0 shadow p-3 bg-white rounded">
               No articles are here... yet.
             </div>
             <ng-container *ngFor="let article of feedArticles">
               <app-articles [article]="article"></app-articles>
             </ng-container>
 
-            <ngb-pagination
-              *ngIf="feedArticles.length > 0"
-              [collectionSize]="feedtotalItems"
-              (pageChange)="onPageChange($event)"
-              [(page)]="page"
-              [maxSize]="limit"
-              [boundaryLinks]="true"
-              [rotate]="true"
-              [ellipses]="false"
-            >
+            <ngb-pagination *ngIf="feedArticles.length > 0" [collectionSize]="feedtotalItems"
+              (pageChange)="onPageChange($event)" [(page)]="page" [maxSize]="limit" [boundaryLinks]="true"
+              [rotate]="true" [ellipses]="false">
             </ngb-pagination>
           </div>
 
@@ -87,15 +59,8 @@
               <app-articles [article]="article"></app-articles>
             </ng-container>
 
-            <ngb-pagination
-              [collectionSize]="globaltotalItems"
-              (pageChange)="onPageChange($event)"
-              [(page)]="page"
-              [maxSize]="limit"
-              [boundaryLinks]="true"
-              [rotate]="true"
-              [ellipses]="false"
-            >
+            <ngb-pagination [collectionSize]="globaltotalItems" (pageChange)="onPageChange($event)" [(page)]="page"
+              [maxSize]="limit" [boundaryLinks]="true" [rotate]="true" [ellipses]="false">
             </ngb-pagination>
           </div>
         </div>
@@ -103,16 +68,35 @@
 
       <!-- show tag popular -->
       <div class="col-md-3">
-        <div class="bg-light p-2">
-          <p>Popular Tags</p>
-          <span
-            class="pointer badge badge-secondary m-1"
-            *ngFor="let tag of tags"
-            (click)="showArticleByTag(tag)"
-            >{{ tag }}</span
-          >
+        <div class="sticky-top position-top">
+          <div class="tags p-2 mb-3 border-bottom">
+            <h6 class="mb-2">Popular Tags</h6>
+            <span class="pointer badge badge-secondary m-1" *ngFor="let tag of tags" (click)="showArticleByTag(tag)">{{
+              tag }}</span>
+          </div>
+
+          <div class="contact p-2">
+            <div class="mb-3 d-flex justify-content-between">
+              <h6>Người liên hệ</h6>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-search custom-pointer" viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+              </div>
+            </div>
+            <div class="list-group border-0">
+              <a href="#" class="list-group-item list-group-item-action border-0 p-2">
+                <p class="font-weight-bold">{{authService.currentUser.username}}</p>
+              </a>
+            </div>
+
+          </div>
         </div>
+
+
       </div>
     </div>
+
   </div>
-</div>
