@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "phakebo0k": {
+      "hosting": {
+        "mock-project-angular": [
+          "phakebo0k"
+        ]
+      }
+    }
+  }
+}

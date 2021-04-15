@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
 import { Comment } from './../../../models/comment';
 import { CommentsService } from './../../../services/comments.service';
@@ -22,7 +23,8 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private commentsService: CommentsService,
     private articleService: ArticlesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -47,17 +49,23 @@ export class ArticlesComponent implements OnInit {
 
 
   likeHandler(article) {
-    if (!article.favorited) {
-      this.articleService.like(article.slug).subscribe((res: any) => {
-        article.favorited = true;
-        article.favoritesCount++;
-      });
-    } else {
-      this.articleService.unLike(article.slug).subscribe((res: any) => {
-        article.favorited = false;
-        article.favoritesCount--;
-      });
+    if (this.authService.isLogIn()) {
+      if (!article.favorited) {
+        this.articleService.like(article.slug).subscribe((res: any) => {
+          article.favorited = true;
+          article.favoritesCount++;
+        });
+      } else {
+        this.articleService.unLike(article.slug).subscribe((res: any) => {
+          article.favorited = false;
+          article.favoritesCount--;
+        });
+      }
     }
+    else {
+      this.router.navigate(['/login'])
+    }
+
   }
 
   showFunctinality() {

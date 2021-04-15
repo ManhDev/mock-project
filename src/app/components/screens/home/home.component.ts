@@ -58,16 +58,6 @@ export class HomeComponent implements OnInit {
     this.getFeedListArticles(this.limit, this.offset)
   }
 
-  // onPageChange($event) {
-  //   this.offset = ($event - 1) * this.limit;
-  //   if (this.mode == 'global') {
-  //     this.getGlobalListArticles(this.limit, this.offset)
-  //   }
-  //   if (this.mode == 'myfeed') {
-  //     this.getFeedListArticles(this.limit, this.offset);
-  //   }
-  // }
-
   onScroll($event) {
     if ($event.target.scrollTop + $event.target.clientHeight >= $event.target.scrollHeight) {
       this.offset += 10;
