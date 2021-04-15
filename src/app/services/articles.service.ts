@@ -7,18 +7,19 @@ import { Injectable } from '@angular/core';
 export class ArticlesService {
   url_base = 'https://conduit.productionready.io/api/articles';
 
-  url_base_follow = 'https://conduit.productionready.io/api/profiles';
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getArticles(limit: number = 10, offset: number) {
     return this.http.get(`${this.url_base}?limit=${limit}&offset=${offset}`);
   }
 
   getMyFeedArticles(limit: number = 10, offset: number) {
-    return this.http.get(
-      `${this.url_base}/feed?limit=${limit}&offset=${offset}`
+    return this.http.get(`${this.url_base}/feed?limit=${limit}&offset=${offset}`
     );
+  }
+
+  getMyFriend() {
+    return this.http.get(`${this.url_base}/feed`)
   }
 
   getArticlesByTag() {
@@ -41,19 +42,11 @@ export class ArticlesService {
   }
 
   like(slug) {
-    return this.http.post(this.url_base + `/${slug}/favorite`, {});
+    return this.http.post(this.url_base + `/ ${slug} / favorite`, {});
   }
 
   unLike(slug) {
-    return this.http.delete(this.url_base + `/${slug}/favorite`, {});
-  }
-
-  follow(userName) {
-    return this.http.post(this.url_base_follow + `/${userName}/follow`, {});
-  }
-
-  unFollow(userName) {
-    return this.http.delete(this.url_base_follow + `/${userName}/follow`, {});
+    return this.http.delete(this.url_base + `/ ${slug} / favorite`, {});
   }
 
   getTags() {

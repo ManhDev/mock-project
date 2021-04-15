@@ -2,7 +2,7 @@ import { User } from './../models/user';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class AuthService {
   currentUser: User;
   loggedIn = null;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   isLogIn(): boolean {
     if (this.loggedIn !== null) {
@@ -38,7 +38,7 @@ export class AuthService {
         (res: { user: User }) => {
           this.currentUser = res.user;
           this.loggedIn = true;
-          this.saveToLocalStrorage('user', res.user)
+          this.saveToLocalStrorage('user', this.currentUser)
           resolve();
         },
         (err => { reject(err) })
@@ -58,6 +58,10 @@ export class AuthService {
       localStorage.removeItem(key);
     }
     localStorage.setItem(key, value)
+  }
+
+  updateProfile(data) {
+    return this.http.put(this.url_base + 'api/user', data)
   }
 
 }

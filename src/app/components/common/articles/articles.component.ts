@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { Comment } from './../../../models/comment';
 import { CommentsService } from './../../../services/comments.service';
 import { Article } from '../../../models/article';
@@ -11,33 +12,39 @@ import { ArticlesService } from 'src/app/services/articles.service';
 })
 export class ArticlesComponent implements OnInit {
   @Input('article') article: Article;
+  @Input('isShowDetail') isShowDetail: boolean = false;
+  @Input('slug') slug: string;
   comments: Comment[] = [];
   focusComment: boolean;
+  showFunction = false;
+  editAndDelete = false;
 
   constructor(
     private commentsService: CommentsService,
-    private articleService: ArticlesService
+    private articleService: ArticlesService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.commentsService
-      .getCommentBySlug(this.article.slug)
-      .subscribe((res) => {
-        this.comments = res['comments'];
-      });
+    this.getListComments();
+    if (this.authService.currentUser.username === this.article.author.username) {
+      this.editAndDelete = true
+    }
   }
 
   addNewComment($event) {
+    this.getListComments()
+  }
+
+
+  getListComments() {
     this.commentsService
-      .getCommentBySlug(this.article.slug)
+      .getCommentBySlug(this.slug)
       .subscribe((res) => {
         this.comments = res['comments'];
       });
   }
 
-  onComment() {
-    this.focusComment = true;
-  }
 
   likeHandler(article) {
     if (!article.favorited) {
@@ -51,5 +58,9 @@ export class ArticlesComponent implements OnInit {
         article.favoritesCount--;
       });
     }
+  }
+
+  showFunctinality() {
+    this.showFunction = !this.showFunction
   }
 }

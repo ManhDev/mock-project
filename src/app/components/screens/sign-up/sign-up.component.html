@@ -6,11 +6,9 @@
         <div class="col-md-6">
             <form class="border rounded p-5  bg-white" [formGroup]="formSignUp" (ngSubmit)="onSubmit()">
                 <h3 class="mb-4 text-uppercase">Sign Up</h3>
-
                 <ng-container>
                     <div class="alert alert-danger" role="alert" *ngIf="hasError">
                         <p>UserName or Email has already been taken</p>
-
                     </div>
                 </ng-container>
 
