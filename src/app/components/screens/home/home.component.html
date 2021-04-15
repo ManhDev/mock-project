@@ -1,8 +1,8 @@
-<div class="mt-4 postition-relative">
+<div class="mt-5 postition-relative">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <div class="sticky-top position-top">
+        <div *ngIf="authService.isLogIn()" class="sticky-top position-top">
           <app-sidebar></app-sidebar>
         </div>
       </div>
@@ -64,7 +64,7 @@
               tag }}</span>
           </div>
 
-          <div class="contact p-2">
+          <div *ngIf="authService.isLogIn()" class="contact p-2">
             <div class="mb-3 d-flex justify-content-between">
               <h6>Người liên hệ</h6>
               <div>

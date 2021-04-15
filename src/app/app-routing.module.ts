@@ -9,8 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './components/screens/profile/profile.component';
 import { HomeComponent } from './components/screens/home/home.component';
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'profile/:id/edit', component: EditComponent, canActivate: [AuthGuard] },
   { path: 'details/:id', component: DetailArticleComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },

@@ -15,6 +15,8 @@ export class LikeComponent implements OnInit {
   }
 
   onClick(article) {
+    console.log(article);
+
     this.like.emit(article);
   }
 }

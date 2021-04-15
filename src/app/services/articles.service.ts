@@ -42,11 +42,11 @@ export class ArticlesService {
   }
 
   like(slug) {
-    return this.http.post(this.url_base + `/ ${slug} / favorite`, {});
+    return this.http.post(this.url_base + `/${slug}/favorite`, {});
   }
 
   unLike(slug) {
-    return this.http.delete(this.url_base + `/ ${slug} / favorite`, {});
+    return this.http.delete(this.url_base + `/${slug}/favorite`, {});
   }
 
   getTags() {
