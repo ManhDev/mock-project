@@ -1,3 +1,11 @@
+.home {
+  height: 80vh;
+  max-height: 80vh;
+  overflow: auto;
+}
+.home::-webkit-scrollbar {
+  display: none;
+}
 .active {
   color: #388e3c;
   border-bottom: 3px solid #388e3c;
@@ -11,7 +19,7 @@
   cursor: pointer;
 }
 .position-top {
-  top: 76px;
+  top: 00px;
 }
 .tags span {
   font-size: 12px !important;

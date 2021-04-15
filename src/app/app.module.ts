@@ -23,6 +23,7 @@ import { DetailArticleComponent } from './components/screens/detail-article/deta
 import { AddCommentComponent } from './components/common/add-comment/add-comment.component';
 import { FollowBtnComponent } from './components/common/follow-btn/follow-btn.component';
 import { SidebarComponent } from './components/screens/sidebar/sidebar.component';
+import { EditComponent } from './components/screens/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SidebarComponent } from './components/screens/sidebar/sidebar.component
     LikeComponent,
     FollowBtnComponent,
     SidebarComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

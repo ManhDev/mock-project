@@ -1,0 +1,52 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card bg-custom border-0 py-5 text-center">
+                <img src="http://hanoimoi.com.vn/Uploads/tuandiep/2018/4/8/1(1).jpg" class="rounded-circle mx-auto"
+                    width="200" height="200">
+                <div class="card-body">
+                    <h5 class="card-title">{{user.username}}</h5>
+                    <p class="card-text"><span class="font-weight-bold">Email:</span> {{user.email}}</p>
+                    <p class="card-text" *ngIf="user.bio"><span class="font-weight-bold">Giới thiệu:</span> {{user.bio}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+
+            <div class="alert alert-danger" role="alert" *ngIf="hasError">
+                Username or Email has been exists.
+                Or Password has blank
+            </div>
+            <form [formGroup]="updateForm" (ngSubmit)="updateProfile()">
+                <div class="form-group">
+                    <label class="font-weight-bold">Tên</label>
+                    <input type="text" class="form-control" formControlName="username">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold">Giới thiệu</label>
+                    <textarea class="form-control" rows="3" formControlName="bio"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold">Ảnh đại diện</label>
+                    <input type="text" class="form-control" formControlName="image">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold">Email</label>
+                    <input type="email" class="form-control" formControlName="email">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold">Password</label>
+                    <input type="password" class="form-control" formControlName="password">
+                </div>
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="updateForm.controls.password.touched && updateForm.controls.password.invalid">
+                    <p *ngIf="updateForm.controls.password.errors?.required"> Password is required </p>
+                    <p *ngIf="updateForm.controls.password.errors?.minlength"> Password is short (min 8 characters) </p>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-danger ml-2">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

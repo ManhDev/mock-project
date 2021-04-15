@@ -1,4 +1,4 @@
-<div class="mt-4">
+<div class="mt-4 postition-relative">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
@@ -8,7 +8,7 @@
       </div>
 
       <!-- home display -->
-      <div class="col-md-6">
+      <div class="col-md-6 home" (scroll)="onScroll($event)">
         <!-- add new article -->
         <app-add-new *ngIf="authService.isLogIn()" [user]="userData" (isPost)="getDataGlobal($event)">
         </app-add-new>
@@ -21,7 +21,7 @@
           <li class="nav-item custom-pointer" (click)="globalView()">
             <a class="font-custom nav-link" [class.active]="mode === 'global'">Cộng đồng</a>
           </li>
-          <li class="nav-item custom-pointer" (click)="globalView()">
+          <li class="nav-item custom-pointer" *ngIf="mode === 'tagArticle'">
             <a class="font-custom nav-link" [class.active]="mode === 'tagArticle'">{{ chooseTag }}</a>
           </li>
         </ul>
@@ -29,12 +29,8 @@
         <div>
           <div *ngIf="mode === 'global'">
             <ng-container *ngFor="let article of globalArticles">
-              <app-articles [article]="article"></app-articles>
+              <app-articles [article]="article" [slug]="article.slug"></app-articles>
             </ng-container>
-
-            <ngb-pagination [collectionSize]="globaltotalItems" (pageChange)="onPageChange($event)" [(page)]="page"
-              [maxSize]="limit" [boundaryLinks]="true" [rotate]="true" [ellipses]="false">
-            </ngb-pagination>
           </div>
 
           <div *ngIf="mode === 'myfeed'">
@@ -42,26 +38,19 @@
               class="border-0 shadow p-3 bg-white rounded">
               No articles are here... yet.
             </div>
-            <ng-container *ngFor="let article of feedArticles">
-              <app-articles [article]="article"></app-articles>
-            </ng-container>
 
-            <ngb-pagination *ngIf="feedArticles.length > 0" [collectionSize]="feedtotalItems"
-              (pageChange)="onPageChange($event)" [(page)]="page" [maxSize]="limit" [boundaryLinks]="true"
-              [rotate]="true" [ellipses]="false">
-            </ngb-pagination>
+            <ng-container *ngFor="let article of feedArticles">
+              <app-articles [article]="article" [slug]="article.slug"></app-articles>
+            </ng-container>
           </div>
 
           <!--  -->
 
           <div *ngIf="mode === 'tagArticle'">
             <ng-container *ngFor="let article of tagArticles">
-              <app-articles [article]="article"></app-articles>
+              <app-articles [article]="article" [slug]="article.slug"></app-articles>
             </ng-container>
 
-            <ngb-pagination [collectionSize]="globaltotalItems" (pageChange)="onPageChange($event)" [(page)]="page"
-              [maxSize]="limit" [boundaryLinks]="true" [rotate]="true" [ellipses]="false">
-            </ngb-pagination>
           </div>
         </div>
       </div>
@@ -71,7 +60,7 @@
         <div class="sticky-top position-top">
           <div class="tags p-2 mb-3 border-bottom">
             <h6 class="mb-2">Popular Tags</h6>
-            <span class="pointer badge badge-secondary m-1" *ngFor="let tag of tags" (click)="showArticleByTag(tag)">{{
+            <span class="pointer btn btn-secondary m-1" *ngFor="let tag of tags" (click)="getListArticlesByTag(tag)">{{
               tag }}</span>
           </div>
 
@@ -87,8 +76,8 @@
               </div>
             </div>
             <div class="list-group border-0">
-              <a href="#" class="list-group-item list-group-item-action border-0 p-2">
-                <p class="font-weight-bold">{{authService.currentUser.username}}</p>
+              <a href="#" class="list-group-item list-group-item-action border-0 p-2" *ngFor="let friend of friends">
+                <p class="font-weight-bold">{{friend}}</p>
               </a>
             </div>
 

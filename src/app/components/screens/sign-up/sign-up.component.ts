@@ -44,9 +44,6 @@ export class SignUpComponent implements OnInit {
       }
     )
 
-    // this.authService.signUp(user).then(() => {
-    //   this.router.navigate([''])
-    // }).catch(err => this.hasError = true)
   }
 
 }
