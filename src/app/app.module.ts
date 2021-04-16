@@ -24,6 +24,7 @@ import { AddCommentComponent } from './components/common/add-comment/add-comment
 import { FollowBtnComponent } from './components/common/follow-btn/follow-btn.component';
 import { SidebarComponent } from './components/screens/sidebar/sidebar.component';
 import { EditComponent } from './components/screens/edit/edit.component';
+import { NotFoundComponent } from './components/screens/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { EditComponent } from './components/screens/edit/edit.component';
     FollowBtnComponent,
     SidebarComponent,
     EditComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

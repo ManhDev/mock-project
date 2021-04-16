@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
 
   getDataGlobal($event) {
     this.getFeedListArticles(this.limit, this.offset)
+    this.getGlobalListArticles(this.limit, this.offset)
   }
 
   onScroll($event) {

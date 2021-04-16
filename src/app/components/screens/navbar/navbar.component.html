@@ -20,7 +20,7 @@
         <li class="right nav-item d-flex justify-content-between" *ngIf="authService.isLogIn()">
 
           <div class="nav-item icon text-center bg-light rounded-circle">
-            <a class="text-dark">
+            <a class="text-dark" (click)="open()">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus"
                 viewBox="0 0 16 16">
                 <path

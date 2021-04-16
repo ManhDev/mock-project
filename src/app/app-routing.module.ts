@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './components/screens/not-found/not-found.component';
 import { EditComponent } from './components/screens/edit/edit.component';
 import { DetailArticleComponent } from './components/screens/detail-article/detail-article.component';
 import { LoginGuard } from './guard/login.guard';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'details/:id', component: DetailArticleComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [LoginGuard] },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

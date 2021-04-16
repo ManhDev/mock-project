@@ -2,8 +2,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="card bg-custom border-0 py-5 text-center">
-                <img src="http://hanoimoi.com.vn/Uploads/tuandiep/2018/4/8/1(1).jpg" class="rounded-circle mx-auto"
-                    width="200" height="200">
+                <img src="{{authService.currentUser.image}}" class="rounded-circle mx-auto" width="200" height="200">
                 <div class="card-body">
                     <h5 class="card-title">{{user.username}}</h5>
                     <p class="card-text"><span class="font-weight-bold">Email:</span> {{user.email}}</p>
@@ -22,6 +21,10 @@
                 <div class="form-group">
                     <label class="font-weight-bold">Tên</label>
                     <input type="text" class="form-control" formControlName="username">
+                </div>
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="updateForm.controls.username.touched && updateForm.controls.username.invalid">
+                    <p *ngIf="updateForm.controls.username.errors?.required"> Password is required </p>
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Giới thiệu</label>
@@ -44,8 +47,8 @@
                     <p *ngIf="updateForm.controls.password.errors?.required"> Password is required </p>
                     <p *ngIf="updateForm.controls.password.errors?.minlength"> Password is short (min 8 characters) </p>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="button" class="btn btn-danger ml-2">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="updateForm.invalid">Submit</button>
+                <button type="button" class="btn btn-danger ml-2" (click)="cancel()">Cancel</button>
             </form>
         </div>
     </div>
