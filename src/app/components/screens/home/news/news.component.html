@@ -1,0 +1,9 @@
+<div class="scroll-custom" (scroll)="onScroll($event)" *ngIf="authService.isLogIn()">
+    <ng-container *ngFor="let article of feedArticles">
+        <app-articles [article]="article" [slug]="article.slug"></app-articles>
+    </ng-container>
+
+    <div *ngIf="hasArticle" class="border-0 shadow p-3 bg-white rounded">
+        No articles are here... yet.
+    </div>
+</div>

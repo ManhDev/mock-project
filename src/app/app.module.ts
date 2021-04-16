@@ -1,9 +1,7 @@
 import { LikeComponent } from './components/common/like/like.component';
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/screens/navbar/navbar.component';
@@ -25,6 +23,10 @@ import { FollowBtnComponent } from './components/common/follow-btn/follow-btn.co
 import { SidebarComponent } from './components/screens/sidebar/sidebar.component';
 import { EditComponent } from './components/screens/edit/edit.component';
 import { NotFoundComponent } from './components/screens/not-found/not-found.component';
+import { CommunityComponent } from './components/screens/home/community/community.component';
+import { NewsComponent } from './components/screens/home/news/news.component';
+import { MessagesComponent } from './components/screens/messages/messages.component';
+import { TagsViewComponent } from './components/screens/home/tags-view/tags-view.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,10 @@ import { NotFoundComponent } from './components/screens/not-found/not-found.comp
     SidebarComponent,
     EditComponent,
     NotFoundComponent,
+    CommunityComponent,
+    NewsComponent,
+    MessagesComponent,
+    TagsViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,4 +69,4 @@ import { NotFoundComponent } from './components/screens/not-found/not-found.comp
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

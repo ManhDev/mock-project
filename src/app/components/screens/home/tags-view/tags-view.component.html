@@ -1,0 +1,5 @@
+<div>
+    <ng-container *ngFor="let article of tagArticles">
+        <app-articles [article]="article" [slug]="article.slug"></app-articles>
+    </ng-container>
+</div>

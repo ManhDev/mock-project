@@ -29,8 +29,10 @@ export class ArticlesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListComments();
-    if (this.authService.currentUser.username === this.article.author?.username) {
-      this.editAndDelete = true
+    if (this.authService.isLogIn()) {
+      if (this.authService.currentUser.username === this.article.author?.username) {
+        this.editAndDelete = true
+      }
     }
   }
 

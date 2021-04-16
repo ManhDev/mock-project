@@ -41,3 +41,22 @@ p {
   border: none !important;
   outline: none !important;
 }
+
+.scroll-custom {
+  height: 80vh;
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.scroll-custom::-webkit-scrollbar {
+  display: none;
+}
+
+.list-group {
+  .list-group-item {
+    background: none;
+  }
+  .list-group-item:hover {
+    background: #e0e0e0;
+  }
+}
