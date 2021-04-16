@@ -1,6 +1,9 @@
+import { AddArticlesComponent } from './../../common/add-articles/add-articles.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +12,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   showDropDown = false;
-  constructor(public authService: AuthService, private router: Router) { }
+  @Output('isPost') isPost: EventEmitter<boolean> = new EventEmitter<boolean>()
+  constructor(public authService: AuthService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
@@ -17,9 +21,14 @@ export class NavbarComponent implements OnInit {
   onLogOut() {
     this.authService.logOut();
     this.router.navigateByUrl('/login');
+    this.showDropDown = false;
   }
   gotoProfile() {
     this.router.navigate([`/profile/${this.authService.currentUser.username}`]);
     this.showDropDown = false;
+  }
+
+  open() {
+    this.modalService.open(AddArticlesComponent).result.then(res => this.isPost.emit(res)).catch(err => console.log(err))
   }
 }
