@@ -45,4 +45,7 @@ export class CommunityComponent implements OnInit {
     this.unsubcription.next();
     this.unsubcription.complete();
   }
+  getDataAgain($event) {
+    this.getGlobalListArticles(this.limit, this.offset)
+  }
 }

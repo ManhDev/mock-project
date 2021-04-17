@@ -62,4 +62,12 @@ export class ArticlesService {
   getMoreData(value) {
     this.isMoreData.next(value)
   }
+
+  deleteArticle(slug) {
+    return this.http.delete(`${this.url_base}/${slug}`);
+  }
+
+  editArticle(slug, body) {
+    return this.http.put(this.url_base + `/${slug}`, body);
+  }
 }

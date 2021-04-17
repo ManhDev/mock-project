@@ -15,4 +15,8 @@ export class CommentsService {
   addCommentBySlug(slug: string, comment: any) {
     return this.http.post(this.url_base + '/articles/' + slug + '/comments', comment)
   }
+
+  deleteComment(slug, id) {
+    return this.http.delete(this.url_base + `/articles/${slug}/comments/${id}`);
+  }
 }

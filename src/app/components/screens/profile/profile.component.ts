@@ -64,4 +64,8 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+
+  getDataAgain($event) {
+    this.getMyListArticles($event)
+  }
 }
