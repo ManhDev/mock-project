@@ -1,7 +1,8 @@
+import { ArticlesService } from './../../../services/articles.service';
 import { User } from './../../../models/user';
 import { AddArticlesComponent } from './../add-articles/add-articles.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-new',
@@ -11,17 +12,27 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddNewComponent implements OnInit {
   @Input('user') user = {} as User
   @Output('isPost') isPost: EventEmitter<boolean> = new EventEmitter<boolean>()
-
-  constructor(private modalService: NgbModal) { }
+  modalOption: NgbModalOptions = {};
+  constructor(private modalService: NgbModal, private articleService: ArticlesService) { }
 
   ngOnInit(): void {
-    if (this.user.image === null) {
-      this.user.image = 'https://brighterwriting.com/wp-content/uploads/icon-user-default-420x420.png'
-    }
+
   }
 
   open() {
-    this.modalService.open(AddArticlesComponent).result.then(res => this.isPost.emit(res)).catch(err => console.log(err))
+    this.modalOption.backdrop = 'static';
+    this.modalOption.keyboard = false;
+    this.modalService.open(AddArticlesComponent, this.modalOption).result.then(res => {
+      let article = { article: { ...res } }
+      if (article.article?.tagList === null) {
+        article.article.tagList = null
+      }
+      else {
+        article.article['tagList'] = article.article['tagList'].split(" ");
+      }
+      this.articleService.addNewArticle(article).subscribe(myArticle => { this.isPost.emit(true) });
+    }
+    ).catch(err => console.log(err))
   }
 
 }

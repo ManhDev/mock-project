@@ -23,10 +23,6 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe(param => {
       this.userService.getUserProfile(param.id).subscribe((profile: { profile: Profile }) => {
         this.userData = profile.profile;
-
-        if (this.userData.image === null) {
-          this.userData.image = 'https://brighterwriting.com/wp-content/uploads/icon-user-default-420x420.png'
-        }
       })
       this.getMyListArticles(param.id)
       this.getMyListFavoriteArticles(param.id)

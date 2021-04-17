@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { User } from './../../../models/user';
 import { Article } from './../../../models/article';
@@ -22,13 +23,15 @@ export class HomeComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private articleService: ArticlesService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
     this.getListTags()
-    if (this.authService.isLogIn()) { this.getFriends() }
-
+    if (this.authService.isLogIn()) {
+      this.friends = this.userService.getFriends()
+    }
 
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((res: any) => {
       if (res.url.includes('/community') || res.url.includes('/news')) {
@@ -37,25 +40,16 @@ export class HomeComponent implements OnInit {
     })
   }
 
-
-  getFriends() {
-    this.articleService.getMyFriend().subscribe((res: { articles: Article[] }) => {
-      let user = res.articles.map(item => item.author.username);
-      let arrUser = []
-      for (let i = 0; i < user.length; i++) {
-        if (arrUser.indexOf(user[i]) === -1) {
-          arrUser.push(user[i])
-        }
-      }
-      this.friends = arrUser
-    })
-  }
-
   getListTags() {
     this.articleService.getTags().subscribe((res: any) => {
       this.tags = res.tags.filter(e => JSON.stringify(e).replace(/\W/g, '').length);
     });
   }
+
+  getDataAgain($event) {
+    this.articleService.getMoreData($event)
+  }
+
 
   getListArticlesByTag(tag) {
     this.chooseTag = tag;

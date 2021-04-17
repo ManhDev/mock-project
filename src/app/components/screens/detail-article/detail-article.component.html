@@ -1,9 +1,14 @@
-<div class="container mt-5">
+<div class="container margin-top">
   <div class="row">
     <div class="col-md-2"></div>
     <!-- Show details -->
     <div class="col-md-8">
       <app-articles [article]="articleDetails" [isShowDetail]="showDetail" [slug]="slug"></app-articles>
+
+      <div class="alert alert-light text-dark" role="alert">
+        <a class="text-decoration-none text-primary" routerLink="/login">Đăng nhập</a> hoặc <a
+          class="text-decoration-none text-primary" routerLink="/sign-up">đăng kí</a> để thêm bình luận
+      </div>
     </div>
     <div class="col-md-2"></div>
   </div>

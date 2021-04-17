@@ -1,52 +1,40 @@
-<div class="mt-5 postition-relative">
+<div class="home margin-top">
+  <div class="left">
+    <div *ngIf="authService.isLogIn()">
+      <app-sidebar></app-sidebar>
+    </div>
+  </div>
+
   <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <div *ngIf="authService.isLogIn()" class="sticky-top position-top">
-          <app-sidebar></app-sidebar>
-        </div>
-      </div>
-
-      <!-- home display -->
-      <div class="col-md-6 home">
-        <!-- add new article -->
-        <app-add-new *ngIf="authService.isLogIn()" [user]="userData" (isPost)="getDataGlobal($event)">
-        </app-add-new>
-
-        <!-- nav feed -->
-        <ul class="nav mb-3">
-          <li class="nav-item custom-pointer" *ngIf="authService.isLogIn()" routerLink="news">
-            <a class="font-custom nav-link" routerLinkActive="active">Bảng Tin</a>
-          </li>
-          <li class="nav-item custom-pointer" routerLink="community">
-            <a class="font-custom nav-link" routerLinkActive="active">Cộng đồng</a>
-          </li>
-          <li class="nav-item custom-pointer" *ngIf="isViewTag">
-            <a class="font-custom nav-link" [class.active]="isViewTag">{{ chooseTag }}</a>
-          </li>
-        </ul>
-        <!-- show feed -->
-        <div>
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-
-      <!-- show tag popular -->
-      <div class="col-md-3">
-        <div class="sticky-top position-top">
-          <div class="tags p-2 mb-3 border-bottom">
-            <h6 class="mb-2">Popular Tags</h6>
-            <span class="pointer btn btn-secondary m-1" *ngFor="let tag of tags" (click)="getListArticlesByTag(tag)">{{
-              tag }}</span>
-          </div>
-
-          <div *ngIf="authService.isLogIn()" class="contact p-2">
-            <app-messages [listFriends]='friends'></app-messages>
-          </div>
-        </div>
+    <div *ngIf="authService.isLogIn()">
+      <app-add-new [user]="authService.currentUser" (isPost)="getDataAgain($event)"></app-add-new>
+    </div>
+    <ul class="nav mb-3">
+      <li class="nav-item custom-pointer" *ngIf="authService.isLogIn()" routerLink="news">
+        <a class="font-custom nav-link" routerLinkActive="active">Bảng Tin</a>
+      </li>
+      <li class="nav-item custom-pointer" routerLink="community">
+        <a class="font-custom nav-link" routerLinkActive="active">Cộng đồng</a>
+      </li>
+      <li class="nav-item custom-pointer" *ngIf="isViewTag">
+        <a class="font-custom nav-link" [class.active]="isViewTag">{{ chooseTag }}</a>
+      </li>
+    </ul>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 
 
-      </div>
+  <div class="right">
+    <div class="tags p-2 mb-3 border-bottom">
+      <h6 class="mb-2">Popular Tags</h6>
+      <span class="custom-pointer btn btn-secondary m-1" *ngFor="let tag of tags" (click)="getListArticlesByTag(tag)">{{
+        tag }}</span>
     </div>
 
+    <div *ngIf="authService.isLogIn()" class="contact p-2">
+      <app-messages [listFriends]='friends'></app-messages>
+    </div>
   </div>
+</div>

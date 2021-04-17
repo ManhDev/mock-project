@@ -1,5 +1,9 @@
 .header {
   background: white;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 .border-custom {
   border-radius: 25px;
