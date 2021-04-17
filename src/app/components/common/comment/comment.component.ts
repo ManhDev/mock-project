@@ -13,10 +13,14 @@ export class CommentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+
   }
 
-  deleteCommet(id) {
+  deleteComment(id) {
     this.idComment.emit(id)
+
+
   }
 
 

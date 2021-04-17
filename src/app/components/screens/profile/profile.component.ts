@@ -27,6 +27,8 @@ export class ProfileComponent implements OnInit {
       this.getMyListArticles(param.id)
       this.getMyListFavoriteArticles(param.id)
     })
+
+
   }
 
   myArticles(): void {

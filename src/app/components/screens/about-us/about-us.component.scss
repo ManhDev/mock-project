@@ -1,0 +1,68 @@
+.btn-container a {
+  background-color: rgb(224, 40, 101);
+}
+.btn-container a:hover {
+  background-color: rgb(235, 30, 98);
+}
+.btn-container {
+  padding: 10px 0 100px 0;
+}
+.header-text {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 0 auto;
+}
+.head {
+  padding: 100px 0;
+}
+header {
+  background: url("../../../../assets/bg.PNG");
+}
+main {
+  padding-bottom: 30px;
+}
+nav {
+  background-color: rgb(78, 35, 35);
+  color: white;
+}
+a {
+  color: white;
+  margin: 0 10px;
+  border: none;
+}
+h1::first-line {
+  font-size: 50px;
+  color: #014398;
+}
+h1 {
+  font-size: 30px;
+  color: white;
+}
+img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+.tab-main {
+  width: 70vw;
+  margin: 40px auto;
+}
+footer div {
+  padding: 20px 0;
+}
+footer div p {
+  margin: 0;
+}
+
+@media only screen and (min-width: 576px) and (max-width: 992px) {
+  .order1 {
+    order: 0;
+    margin-bottom: 10px;
+  }
+  .order0 {
+    order: 1;
+  }
+  .tab-main {
+    margin-top: 15px;
+  }
+}

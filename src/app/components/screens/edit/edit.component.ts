@@ -21,26 +21,28 @@ export class EditComponent implements OnInit {
     this.updateForm = new FormGroup({
       email: new FormControl({ value: this.user.email, disabled: true }),
       username: new FormControl(this.user.username, [Validators.required]),
-      image: new FormControl(),
-      bio: new FormControl(),
+      image: new FormControl(this.user.image),
+      bio: new FormControl(this.user.bio),
       password: new FormControl('', [Validators.minLength(8), Validators.required])
     })
   }
 
   updateProfile() {
-    console.log(this.updateForm);
+
 
     let body = { user: { ...this.updateForm.value } }
 
-    this.authService.updateProfile(body).subscribe((res: { user: User }) => {
-      let userMock = { user: { email: this.user.email, password: this.updateForm.value.password } }
-      this.authService.signIn(userMock).then(() => { this.router.navigate(['/profile/' + res.user.username]) }).catch(err => console.log(err))
-    },
-      (error: any) => {
-        this.hasError = true
+    this.authService.updateProfile(body).then(() => { this.router.navigate(['/profile/' + this.updateForm.value.username]) }).catch(() => this.hasError = true)
 
-      }
-    )
+    // this.authService.updateProfile(body).subscribe((res: { user: User }) => {
+    //   let userMock = { user: { email: this.user.email, password: this.updateForm.value.password } }
+    //   this.authService.signIn(userMock).then(() => { this.router.navigate(['/profile/' + res.user.username]) }).catch(err => console.log(err))
+    // },
+    //   (error: any) => {
+    //     this.hasError = true
+
+    //   }
+    // )
   }
 
   cancel() {

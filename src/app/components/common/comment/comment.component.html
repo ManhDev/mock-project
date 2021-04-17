@@ -1,8 +1,10 @@
 <ng-container *ngFor="let comment of comments">
     <div class="comment mb-2">
         <div class="d-flex mb-2">
-            <img src="https://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="" width="30"
-                height="30" class="rounded-circle">
+            <img *ngIf="comment.author?.image" [src]="comment.author?.image" alt="" width="30" height="30"
+                class="rounded-circle">
+            <img *ngIf="!comment.author?.image" src="https://static.productionready.io/images/smiley-cyrus.jpg" alt=""
+                width="30" height="30" class="rounded-circle">
             <div class="ml-2 d-inline-block bg-light p-2 rounded">
                 <h6>{{comment.author?.username}}</h6>
                 <p>{{comment.body}}</p>
@@ -12,7 +14,7 @@
             <p class="font-custom">{{comment.createdAt | date:'short'}}</p>
             <p class="font-custom mx-3 text-dark custom-pointer">Thích</p>
             <p class="font-custom mr-3 text-dark custom-pointer">Trả lời</p>
-            <p class="font-custom text-dark custom-pointer" (click)=deleteCommet(comment.id)>Xóa</p>
+            <p class="font-custom text-dark custom-pointer" (click)=deleteComment(comment.id)>Xóa</p>
         </div>
     </div>
 </ng-container>
