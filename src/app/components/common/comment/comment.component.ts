@@ -9,10 +9,14 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class CommentComponent implements OnInit {
   @Input('comments') comments: Comment[]
-
+  @Output('id') idComment: EventEmitter<number> = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteCommet(id) {
+    this.idComment.emit(id)
   }
 
 

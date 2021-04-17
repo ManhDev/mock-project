@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { Article } from './../../../models/article';
 import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from './../../../services/articles.service';
@@ -16,6 +17,7 @@ export class DetailArticleComponent implements OnInit {
   constructor(
     private articlesService: ArticlesService,
     private route: ActivatedRoute,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {

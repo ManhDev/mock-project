@@ -1,6 +1,6 @@
 import { ArticlesService } from '../../../services/articles.service';
 import { User } from '../../../models/user';
-import { AddArticlesComponent } from '../form-add-articles/add-articles.component';
+import { AddArticlesComponent } from '../form-articles/add-articles.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
@@ -23,14 +23,16 @@ export class AddNewComponent implements OnInit {
     this.modalOption.backdrop = 'static';
     this.modalOption.keyboard = false;
     this.modalService.open(AddArticlesComponent, this.modalOption).result.then(res => {
-      let article = { article: { ...res } }
-      if (article.article?.tagList === null) {
-        article.article.tagList = null
+      if (res) {
+        let article = { article: { ...res } }
+        if (article.article?.tagList === null) {
+          article.article.tagList = null
+        }
+        else {
+          article.article['tagList'] = article.article['tagList'].split(" ");
+        }
+        this.articleService.addNewArticle(article).subscribe(myArticle => { this.isPost.emit(true) });
       }
-      else {
-        article.article['tagList'] = article.article['tagList'].split(" ");
-      }
-      this.articleService.addNewArticle(article).subscribe(myArticle => { this.isPost.emit(true) });
     }
     ).catch(err => console.log(err))
   }

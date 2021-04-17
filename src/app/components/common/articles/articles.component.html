@@ -15,8 +15,11 @@
         <p class="time-custom">{{ article.createdAt | date: "short" }}</p>
       </div>
       <div class="dropdown ml-auto" *ngIf="authService.isLogIn()">
-        <app-functionality [showDropDown]="showFunction" [editAndDelete]="editAndDelete"
-          (acticeFunction)="selectedFunction($event)"></app-functionality>
+
+        <app-functionality [article]="article" [editAndDelete]="editAndDelete" (delete)="delete($event)"
+          (edit)="edit($event)">
+        </app-functionality>
+
       </div>
     </div>
 
@@ -60,7 +63,7 @@
 
     <!-- show and add comments -->
     <div>
-      <app-comment [comments]="comments"></app-comment>
+      <app-comment [comments]="comments" (id)="deleteMyComment($event)"></app-comment>
     </div>
     <div *ngIf="authService.isLogIn()" class="add-commnet">
       <app-add-comment [article]="article" (mycomment)="addNewComment($event)">

@@ -1,5 +1,5 @@
 <div class="scroll-custom" (scroll)="onScroll($event)">
     <ng-container *ngFor="let article of globalArticles">
-        <app-articles [article]="article" [slug]="article.slug"></app-articles>
+        <app-articles [article]="article" [slug]="article.slug" (loadingData)="getDataAgain($event)"></app-articles>
     </ng-container>
 </div>

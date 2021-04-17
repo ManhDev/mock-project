@@ -11,7 +11,8 @@
         <div class="font-custom d-flex align-items-center">
             <p class="font-custom">{{comment.createdAt | date:'short'}}</p>
             <p class="font-custom mx-3 text-dark custom-pointer">Thích</p>
-            <p class="font-custom text-dark custom-pointer">Trả lời</p>
+            <p class="font-custom mr-3 text-dark custom-pointer">Trả lời</p>
+            <p class="font-custom text-dark custom-pointer" (click)=deleteCommet(comment.id)>Xóa</p>
         </div>
     </div>
 </ng-container>

@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/screens/navbar/navbar.component';
 import { HomeComponent } from './components/screens/home/home.component';
-import { AddArticlesComponent } from './components/common/form-add-articles/add-articles.component';
+import { AddArticlesComponent } from './components/common/form-articles/add-articles.component';
 import { ProfileComponent } from './components/screens/profile/profile.component';
 import { LoginComponent } from './components/screens/login/login.component';
 import { SignUpComponent } from './components/screens/sign-up/sign-up.component';

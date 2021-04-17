@@ -8,7 +8,8 @@
     </button>
     <div class="dropdown-menu p-2 position" [class.show]="showDropDown">
         <ng-container *ngIf="editAndDelete">
-            <a class="dropdown-item px-2 rounded custom-pointer font-weight-bold d-flex align-items-center">
+            <a class="dropdown-item px-2 rounded custom-pointer font-weight-bold d-flex align-items-center"
+                (click)="editArticle()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen"
                     viewBox="0 0 16 16">
                     <path
@@ -16,7 +17,8 @@
                 </svg>
                 <span class="ml-2">Chỉnh sửa bài viết</span></a>
 
-            <a class="dropdown-item px-2 rounded custom-pointer font-weight-bold d-flex align-items-center">
+            <a class="dropdown-item px-2 rounded custom-pointer font-weight-bold d-flex align-items-center"
+                (click)="deleteMyArticle()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
                     viewBox="0 0 16 16">
                     <path
