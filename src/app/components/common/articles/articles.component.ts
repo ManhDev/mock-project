@@ -27,7 +27,7 @@ export class ArticlesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getListComments(this.article.slug);
+    this.getListComments(this.slug);
     if (this.authService.isLogIn()) {
       if (this.authService.currentUser.username === this.article.author?.username) {
         this.editAndDelete = true
@@ -66,7 +66,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   delete($event) {
-    this.articleService.deleteArticle(this.article.slug).subscribe(res => {
+    this.articleService.deleteArticle(this.slug).subscribe(res => {
       this.loadingData.emit(this.article.author.username)
     })
   }
@@ -76,14 +76,14 @@ export class ArticlesComponent implements OnInit {
       return
     }
     let updateArticle = { article: { ...body } }
-    this.articleService.editArticle(this.article.slug, updateArticle).subscribe((res: { article: Article }) => {
+    this.articleService.editArticle(this.slug, updateArticle).subscribe((res: { article: Article }) => {
       this.article = res.article
     })
   }
 
   deleteMyComment($event) {
-    this.commentsService.deleteComment(this.article.slug, $event).subscribe(res => {
-      this.getListComments(this.article.slug)
+    this.commentsService.deleteComment(this.slug, $event).subscribe(res => {
+      this.getListComments(this.slug)
 
     })
   }
