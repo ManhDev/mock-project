@@ -1,5 +1,5 @@
 import { Article } from '../../../models/article';
-import { ArticlesService } from './../../../services/articles.service';
+import { ArticlesService } from '../../../services/articles.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,6 +12,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddArticlesComponent implements OnInit {
   globalArticles: Article[]
   articleForm: FormGroup;
+  isPostArticle = false;
 
   constructor(private articleService: ArticlesService, private activeModal: NgbActiveModal) { }
 
@@ -25,15 +26,10 @@ export class AddArticlesComponent implements OnInit {
   }
 
   postMyArticle() {
-    let article = { article: { ...this.articleForm.value } }
-    if (article.article['tagList'] === null) {
-      article.article['tagList'] = null
+    this.isPostArticle = true
+    if (this.articleForm.valid) {
+      this.activeModal.close(this.articleForm.value);
     }
-    else {
-      article.article['tagList'] = article.article['tagList'].split(" ");
-    }
-    this.articleService.addNewArticle(article).subscribe(myArticle => { });
-    this.activeModal.close(this.articleForm.value);
   }
 
 }

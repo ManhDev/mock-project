@@ -1,4 +1,4 @@
-import { AddArticlesComponent } from './../../common/add-articles/add-articles.component';
+import { AddArticlesComponent } from '../../common/form-add-articles/add-articles.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
