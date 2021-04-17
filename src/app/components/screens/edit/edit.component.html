@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="card bg-custom border-0 py-5 text-center">
-                <img *ngIf="authService.currentUser.image" [(src)]="authService.currentUser.image"
+                <img *ngIf="authService.currentUser.image" [src]="authService.currentUser.image"
                     class="rounded-circle mx-auto" width="200" height="200">
                 <img *ngIf="!authService.currentUser.image"
                     src="https://static.productionready.io/images/smiley-cyrus.jpg" class="rounded-circle mx-auto"

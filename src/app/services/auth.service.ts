@@ -61,7 +61,14 @@ export class AuthService {
   }
 
   updateProfile(data) {
-    return this.http.put(this.url_base + 'api/user', data)
+    // return this.http.put(this.url_base + 'api/user', data)
+    return new Promise<void>((resolve, reject) => {
+      this.http.put(this.url_base + 'api/user', data).subscribe((res: { user: User }) => {
+        this.currentUser = res.user;
+        this.saveToLocalStrorage('user', this.currentUser)
+        resolve();
+      }, (err => { reject(err) }))
+    })
   }
 
 }

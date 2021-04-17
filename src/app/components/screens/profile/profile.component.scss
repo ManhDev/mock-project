@@ -1,9 +1,11 @@
 .profile {
   margin-top: 4rem;
   min-height: 270px;
-}
-.bg {
-  background-color: #e0e0e0;
+  position: relative;
+  .container {
+    position: relative;
+    z-index: 1000;
+  }
 }
 .font-custom {
   font-size: 16px;
@@ -16,5 +18,17 @@
 }
 
 .bg-gradient {
-  background-image: linear-gradient(to top, white, #5371ae);
+  background: url(../../../../assets/background.jpg);
+  background-position: center center;
+  background-size: cover;
 }
+
+// .overlay {
+//   position: absolute;
+//   background: rgba(255, 255, 255, 0.1);
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   z-index: 0;
+// }

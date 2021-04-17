@@ -28,6 +28,8 @@ import { NewsComponent } from './components/screens/home/news/news.component';
 import { MessagesComponent } from './components/screens/messages/messages.component';
 import { TagsViewComponent } from './components/screens/home/tags-view/tags-view.component';
 import { FunctionalityComponent } from './components/common/functionality/functionality.component';
+import { FooterComponent } from './components/screens/footer/footer.component';
+import { AboutUsComponent } from './components/screens/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { FunctionalityComponent } from './components/common/functionality/functi
     MessagesComponent,
     TagsViewComponent,
     FunctionalityComponent,
+    FooterComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,

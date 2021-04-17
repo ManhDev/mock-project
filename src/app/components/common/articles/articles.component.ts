@@ -27,7 +27,7 @@ export class ArticlesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getListComments(this.slug);
+    this.getListComments(this.article.slug);
     if (this.authService.isLogIn()) {
       if (this.authService.currentUser.username === this.article.author?.username) {
         this.editAndDelete = true
@@ -40,11 +40,9 @@ export class ArticlesComponent implements OnInit {
   }
 
   getListComments(slug) {
-    this.commentsService
-      .getCommentBySlug(slug)
-      .subscribe((res: { comments: Comment[] }) => {
-        this.comments = res.comments
-      });
+    this.commentsService.getCommentBySlug(slug).subscribe((res: { comments: Comment[] }) => {
+      this.comments = res.comments
+    });
   }
 
 
