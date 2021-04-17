@@ -1,6 +1,6 @@
-import { ArticlesService } from './../../../services/articles.service';
-import { User } from './../../../models/user';
-import { AddArticlesComponent } from './../add-articles/add-articles.component';
+import { ArticlesService } from '../../../services/articles.service';
+import { User } from '../../../models/user';
+import { AddArticlesComponent } from '../form-add-articles/add-articles.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 

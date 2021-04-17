@@ -14,7 +14,7 @@ import { takeUntil } from 'rxjs/operators';
 export class CommunityComponent implements OnInit {
 
   globalArticles: Article[] = [];
-  subcription = new Subject()
+  unsubcription = new Subject()
   offset = 0;
   limit: number = 10;
   totalArtilces: number;
@@ -22,7 +22,7 @@ export class CommunityComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGlobalListArticles(this.limit, this.offset)
-    this.articleService.isMoreData.pipe(takeUntil(this.subcription)).subscribe(res => { if (res) { this.getGlobalListArticles(this.limit, this.offset) } })
+    this.articleService.isMoreData.pipe(takeUntil(this.unsubcription)).subscribe(res => { if (res) { this.getGlobalListArticles(this.limit, this.offset) } })
   }
 
   getGlobalListArticles(limit, offset) {
@@ -42,6 +42,7 @@ export class CommunityComponent implements OnInit {
   }
 
   ngDestroy() {
-    this.subcription.next(false);
+    this.unsubcription.next();
+    this.unsubcription.complete();
   }
 }
