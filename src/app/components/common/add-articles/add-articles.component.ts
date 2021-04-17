@@ -33,7 +33,7 @@ export class AddArticlesComponent implements OnInit {
       article.article['tagList'] = article.article['tagList'].split(" ");
     }
     this.articleService.addNewArticle(article).subscribe(myArticle => { });
-    this.activeModal.close('true');
+    this.activeModal.close(this.articleForm.value);
   }
 
 }

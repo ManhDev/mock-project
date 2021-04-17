@@ -1,52 +1,49 @@
-<div class="container mt-5">
+<div class="container margin-top">
     <div class="row">
         <div class="col-md-3">
 
         </div>
         <div class="col-md-6">
-            <form class="border rounded p-5  bg-white" [formGroup]="formSignUp" (ngSubmit)="onSubmit()">
-                <h3 class="mb-4 text-uppercase">Sign Up</h3>
+            <form class="sign-up mt-5 p-3 shadow-sm bg-white" [formGroup]="formSignUp" (ngSubmit)="onSubmit()">
+                <h3 class="mb-4 text-uppercase">Đăng ký</h3>
                 <ng-container>
                     <div class="alert alert-danger" role="alert" *ngIf="hasError">
-                        <p>UserName or Email has already been taken</p>
+                        <p>Tên người dùng hoặc email đã tồn tại</p>
                     </div>
                 </ng-container>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" formControlName="username" placeholder="User name">
+                    <input type="text" class="form-control py-4" formControlName="username" placeholder="User name">
                     <ng-container>
                         <div class="alert alert-danger custom-padding mt-2" role="alert"
                             *ngIf="getError('username').errors && getError('username')?.touched">
-                            <p *ngIf="getError('username').errors.required">UserName is required</p>
-                            <p *ngIf="getError('username').errors.maxlength">UserName is too long (maximum is 20
-                                characters)</p>
+                            <p *ngIf="getError('username').errors.required">Tên người dùng không được bỏ trống</p>
+                            <p *ngIf="getError('username').errors.maxlength">Tên người dùng dài tối đa 20 kí tự</p>
                         </div>
                     </ng-container>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                    <input type="email" class="form-control py-4" formControlName="email" placeholder="Email">
                     <ng-container>
                         <div class="alert alert-danger custom-padding mt-2" role="alert"
                             *ngIf="getError('email').errors && getError('email')?.touched">
-                            <p *ngIf="getError('email').errors.required">Email is required</p>
-                            <p *ngIf="getError('email').errors.email">Email is incorrect</p>
+                            <p *ngIf="getError('email').errors.required">Email không được bỏ trống</p>
+                            <p *ngIf="getError('email').errors.email">Email không chính xác</p>
                         </div>
                     </ng-container>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                    <input type="password" class="form-control py-4" formControlName="password" placeholder="Password">
                     <ng-container>
                         <div class="alert alert-danger custom-padding mt-2" role="alert"
                             *ngIf="getError('password').errors && getError('password')?.touched">
-                            <p *ngIf="getError('password').errors.required">Password is required</p>
-                            <p *ngIf="getError('password').errors.minlength">Password is too long (min is 8 characters)
+                            <p *ngIf="getError('password').errors.required">Mật khẩu không được bỏ trống</p>
+                            <p *ngIf="getError('password').errors.minlength">Mật khẩu dài ít nhất 8 kí tự
                             </p>
                         </div>
                     </ng-container>
                 </div>
-                <button type="submit" class="btn btn-primary w-100" [disabled]="formSignUp.invalid">Sign Up</button>
-                <p class="text-center mt-3">Already have an account? <span class="text-success">Login here</span></p>
-
+                <button type="submit" class="btn btn-success w-100" [disabled]="formSignUp.invalid">Đăng kí</button>
 
             </form>
         </div>

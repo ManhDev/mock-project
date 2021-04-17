@@ -27,6 +27,7 @@ import { CommunityComponent } from './components/screens/home/community/communit
 import { NewsComponent } from './components/screens/home/news/news.component';
 import { MessagesComponent } from './components/screens/messages/messages.component';
 import { TagsViewComponent } from './components/screens/home/tags-view/tags-view.component';
+import { FunctionalityComponent } from './components/common/functionality/functionality.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { TagsViewComponent } from './components/screens/home/tags-view/tags-view
     NewsComponent,
     MessagesComponent,
     TagsViewComponent,
+    FunctionalityComponent,
   ],
   imports: [
     BrowserModule,

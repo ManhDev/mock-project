@@ -1,3 +1,4 @@
+import { UserService } from './../../../../services/user.service';
 import { AuthService } from './../../../../services/auth.service';
 import { Article } from './../../../../models/article';
 import { ArticlesService } from 'src/app/services/articles.service';
@@ -11,14 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
   feedArticles: Article[] = [];
+  totalArtilces: number;
   hasArticle = false;
   offset: number = 0;
   limit: number = 10;
-  constructor(private articleService: ArticlesService, public authService: AuthService) { }
+  constructor(private articleService: ArticlesService, public authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
     if (this.authService.isLogIn()) {
       this.getFeedListArticles(this.limit, this.offset);
+      if (!this.userService.getFriends()) {
+        this.hasArticle = true
+      }
     }
   }
 
@@ -27,14 +32,15 @@ export class NewsComponent implements OnInit {
       .getMyFeedArticles(limit, offset)
       .subscribe((res: { articles: Article[]; articlesCount: number }) => {
         this.feedArticles = res.articles;
-        if (this.feedArticles.length === 0) { this.hasArticle = true }
+        this.totalArtilces = res.articlesCount
       });
   }
 
   onScroll($event) {
     if ($event.target.scrollTop + $event.target.clientHeight >= $event.target.scrollHeight) {
       this.offset += 10;
-      this.getFeedListArticles(this.limit, this.offset)
+      if (this.offset <= this.totalArtilces) { this.getFeedListArticles(this.limit, this.offset) }
     }
   }
+
 }

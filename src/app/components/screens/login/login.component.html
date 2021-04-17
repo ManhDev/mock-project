@@ -1,42 +1,57 @@
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-3">
+<div class="container margin-top pt-5">
+    <div class="row align-items-center">
+        <div class="col-md-8" *ngIf="!notifyError">
+            <h1>Phakebook</h1>
+            <h3>Phakebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn</h3>
         </div>
-        <div class="col-md-6">
-            <form class="border rounded p-5  bg-white" [formGroup]="loginForm" (ngSubmit)="onLogin()">
-                <h3 class="mb-4 text-uppercase">Account Login</h3>
+        <div [class.col-md-3]="notifyError"></div>
+        <div class="col-md-4" [class.col-md-6]="notifyError">
+            <h1 class="text-center mb-3" *ngIf="notifyError">Phakebook</h1>
+            <form class="login p-3 shadow-sm bg-white" [formGroup]="loginForm" (ngSubmit)="onLogin()">
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+                    <input type="email" class="form-control py-4" placeholder="Enter email" formControlName="email">
                 </div>
-                <ng-container *ngIf="loginForm.controls.email.errors && loginForm.controls.email?.touched">
-                    <div class="alert alert-danger" role="alert">
-                        Email is incorrect
-                    </div>
-                </ng-container>
+                <div *ngIf="notifyError">
+                    <ng-container *ngIf="loginForm.controls.email.errors">
+                        <div class="alert alert-danger p-2" role="alert">
+                            Email không chính xác
+                        </div>
+                    </ng-container>
+                </div>
+
 
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Enter password" formControlName="password">
+                    <input type="password" class="form-control py-4" placeholder="Enter password"
+                        formControlName="password">
                 </div>
-                <ng-container *ngIf="loginForm.controls.password.errors && loginForm.controls.password?.touched">
-                    <div class="alert alert-danger" role="alert">
-                        Password is very short (min 8 characters)
-                    </div>
-                </ng-container>
+                <div *ngIf="notifyError">
+                    <ng-container *ngIf="loginForm.controls.password.errors">
+                        <div class="alert alert-danger p-2" role="alert">
+                            Mật khẩu ít nhất là 8 kí tự
+                        </div>
+                    </ng-container>
+                </div>
+
 
                 <ng-container *ngIf="error">
-                    <div class="alert alert-danger" role="alert">
-                        Email or password is invalid
+                    <div class="alert alert-danger p-2" role="alert">
+                        Email hoặc mật khẩu không chính xác
                     </div>
                 </ng-container>
 
-                <button type="submit" class="btn btn-primary w-100">Sign In</button>
-                <p class="text-center mt-3">Not registered? <a routerLink='/sign-up'
-                        class="text-success text-decoration-none">Create an
-                        account</a></p>
+                <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+
+                <div class="text-center mt-3 border-bottom pb-3">
+                    <a class="text-primary text-decoration-none custom-pointer">Quên mật
+                        khẩu</a>
+                </div>
+
+                <div class="text-center mt-3">
+                    <button class="btn btn-success" routerLink='/sign-up'>Tạo tài khoản mới</button>
+                </div>
             </form>
         </div>
-        <div class="col-md-3">
-
+        <div [class.col-md-3]="notifyError">
         </div>
     </div>
 </div>

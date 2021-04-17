@@ -1,8 +1,10 @@
 <div class="d-flex shadow-sm p-3 mb-5 bg-white rounded">
     <a routerLink="/profile/{{user.username}}" class=" mr-2 custom-pointer">
-        <img src="{{user['image']}}" alt="" width="50" height="50" class="rounded-circle">
+        <img *ngIf="user.image" [src]="user.image" alt="" width="50" height="50" class="rounded-circle">
+        <img *ngIf="!user.image" src="https://static.productionready.io/images/smiley-cyrus.jpg" alt="" width="50"
+            height="50" class="rounded-circle">
     </a>
-    <div class="rounded-pill bg-light p-3 w-100" (click)="open()">
-        <span class="text-dark">What are you thinking?</span>
+    <div class="rounded-pill bg-light p-3 w-100 custom-pointer text-secondary" (click)="open()">
+        <span class="text-dark">{{user.username}} ơi, bạn đang nghĩ gì thế?</span>
     </div>
 </div>

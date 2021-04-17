@@ -11,27 +11,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  notifyError = false;
   loginForm: FormGroup;
   error = false;
+  isSubmit = false;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.email]),
-      password: new FormControl('', [Validators.minLength(8)])
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.minLength(8), Validators.required])
     })
   }
+
   onLogin() {
+    this.isSubmit = this.loginForm.invalid
     let user = {
       user: {
         ...this.loginForm.value
       }
     }
-    this.authService.signIn(user).then(() => {
-      this.router.navigate([''])
-    })
-      .catch((err) => {
-        this.error = true
+
+    if (this.loginForm.valid) {
+      this.authService.signIn(user).then(() => {
+        this.router.navigate([''])
       })
+        .catch((err) => {
+          this.error = true;
+          this.notifyError = true;
+        })
+    }
+
+    if (this.isSubmit) {
+      this.notifyError = true
+    }
   }
 }

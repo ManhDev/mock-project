@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticlesService {
   url_base = 'https://conduit.productionready.io/api/articles';
+
+  isMoreData = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { }
 
@@ -55,5 +58,8 @@ export class ArticlesService {
 
   getArticleByTag(tag) {
     return this.http.get(this.url_base + '?tag=' + tag);
+  }
+  getMoreData(value) {
+    this.isMoreData.next(value)
   }
 }

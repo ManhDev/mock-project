@@ -1,13 +1,16 @@
-<div class="bg-gradient text-center py-4" style="min-height: 380px;">
+<div class="profile bg-gradient text-center pt-4">
   <div class="container">
     <div>
-      <img src="{{userData.image}}" class="mt-2 border rounded-circle border-white" width="250" height="250" />
+      <img *ngIf="userData.image" [src]="userData.image" class="mt-2 border rounded-circle border-white" width="150"
+        height="150" />
+      <img *ngIf="!userData.image" src="https://static.productionready.io/images/smiley-cyrus.jpg"
+        class="mt-2 border rounded-circle border-white" width="150" height="150" />
       <h4 class="mt-3">{{userData.username}}</h4>
     </div>
 
     <div class="d-flex justify-content-end">
       <a class="btn btn-primary mr-2" routerLink="/profile/{{userData.username}}/edit"
-        *ngIf="userData.username === authService.currentUser.username">
+        *ngIf="userData?.username === authService.currentUser?.username">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"
           viewBox="0 0 16 16">
           <path
@@ -18,7 +21,7 @@
         <span> Chỉnh sửa thông tin </span>
       </a>
 
-      <div *ngIf="userData.username !== authService.currentUser.username">
+      <div *ngIf="userData?.username !== authService.currentUser?.username">
         <app-follow-btn [data]="userData" [followed]="userData.following" (followHandle)="followHandler($event)">
         </app-follow-btn>
       </div>

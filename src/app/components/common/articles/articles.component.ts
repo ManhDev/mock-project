@@ -23,7 +23,7 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private commentsService: CommentsService,
     private articleService: ArticlesService,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router
   ) { }
 
@@ -40,12 +40,11 @@ export class ArticlesComponent implements OnInit {
     this.getListComments()
   }
 
-
   getListComments() {
     this.commentsService
       .getCommentBySlug(this.slug)
-      .subscribe((res) => {
-        this.comments = res['comments'];
+      .subscribe((res: { comments: Comment[] }) => {
+        this.comments = res.comments
       });
   }
 
@@ -70,7 +69,7 @@ export class ArticlesComponent implements OnInit {
 
   }
 
-  showFunctinality() {
-    this.showFunction = !this.showFunction
+  selectedFunction($event) {
+    this.showFunction = $event
   }
 }
