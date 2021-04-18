@@ -64,8 +64,6 @@ export class ProfileComponent implements OnInit {
       .subscribe((res: { articles: Article[], articlesCount: number }) => {
         this.myfavoritedArticles = res.articles
         this.totalsMyFavoriteArticles = res.articlesCount;
-        console.log(res.articlesCount);
-
       })
   }
 

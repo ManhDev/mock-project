@@ -14,7 +14,7 @@
             <p class="font-custom">{{comment.createdAt | date:'short'}}</p>
             <p class="font-custom mx-3 text-dark custom-pointer">Thích</p>
             <p class="font-custom mr-3 text-dark custom-pointer">Trả lời</p>
-            <p *ngIf="comment.author?.username === authService.currentUser.username"
+            <p *ngIf="comment.author?.username === authService.currentUser?.username"
                 class="font-custom text-dark custom-pointer" (click)=deleteComment(comment.id)>Xóa</p>
         </div>
     </div>
