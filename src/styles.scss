@@ -44,8 +44,8 @@ p {
 }
 
 .scroll-custom {
-  height: 80vh;
-  max-height: 80vh;
+  height: 70vh;
+  max-height: 70vh;
   overflow-y: none;
 }
 
@@ -53,15 +53,15 @@ p {
   overflow-y: scroll;
 }
 
-::-webkit-scrollbar {
+.scroll-custom::-webkit-scrollbar {
   width: 20px;
 }
 
-::-webkit-scrollbar-track {
+.scroll-custom::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+.scroll-custom::-webkit-scrollbar-thumb {
   background-color: #b3b3b3;
   border-radius: 20px;
   border: 6px solid transparent;
