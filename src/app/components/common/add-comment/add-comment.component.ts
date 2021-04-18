@@ -1,5 +1,5 @@
+import { AuthService } from './../../../services/auth.service';
 import { Article } from '../../../models/article';
-import { CommentsService } from './../../../services/comments.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -13,7 +13,7 @@ export class AddCommentComponent implements OnInit {
   @Output('mycomment') mycomment: EventEmitter<any> = new EventEmitter<any>()
 
   comment = new FormControl('', Validators.required)
-  constructor(private commentsService: CommentsService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }

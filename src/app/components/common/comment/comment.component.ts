@@ -1,5 +1,4 @@
-import { CommentsService } from './../../../services/comments.service';
-
+import { AuthService } from './../../../services/auth.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -10,10 +9,10 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class CommentComponent implements OnInit {
   @Input('comments') comments: Comment[]
   @Output('id') idComment: EventEmitter<number> = new EventEmitter<number>();
-  constructor() { }
+
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
-
 
   }
 

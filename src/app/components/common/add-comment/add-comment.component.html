@@ -1,7 +1,7 @@
 <div class="d-flex align-items-stretch">
-    <img *ngIf="article.author?.image" [src]="article.author?.image" alt="" width="30" height="30"
+    <img *ngIf="authService.currentUser?.image" [src]="authService.currentUser?.image" alt="" width="30" height="30"
         class="rounded-circle">
-    <img *ngIf="!article.author?.image" src="https://static.productionready.io/images/smiley-cyrus.jpg" alt=""
+    <img *ngIf="!authService.currentUser?.image" src="https://static.productionready.io/images/smiley-cyrus.jpg" alt=""
         width="30" height="30" class="rounded-circle">
     <div class="ml-2 flex-grow-1">
         <input type="text" class="rounded-pill py-1 px-2 border-0 custom-input bg-light w-100 "
