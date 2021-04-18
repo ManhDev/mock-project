@@ -35,8 +35,10 @@ export class ArticlesComponent implements OnInit {
     }
   }
 
-  addNewComment($event) {
-    this.getListComments(this.slug)
+  addNewComment(comment) {
+    this.commentsService.addCommentBySlug(this.article.slug, comment).subscribe(res => {
+      this.getListComments(this.slug)
+    })
   }
 
   getListComments(slug) {
