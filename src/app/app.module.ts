@@ -30,6 +30,7 @@ import { TagsViewComponent } from './components/screens/home/tags-view/tags-view
 import { FunctionalityComponent } from './components/common/functionality/functionality.component';
 import { FooterComponent } from './components/screens/footer/footer.component';
 import { AboutUsComponent } from './components/screens/about-us/about-us.component';
+import { ComingSoonComponent } from './components/screens/coming-soon/coming-soon.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { AboutUsComponent } from './components/screens/about-us/about-us.compone
     FunctionalityComponent,
     FooterComponent,
     AboutUsComponent,
+    ComingSoonComponent,
   ],
   imports: [
     BrowserModule,

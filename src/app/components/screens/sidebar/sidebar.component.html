@@ -1,52 +1,52 @@
 <div class="list-group border-0">
-    <a routerLink="/profile/{{authService.currentUser.username}}"
+    <a *ngIf="authService.isLogIn()" routerLink="/profile/{{authService.currentUser?.username}}"
         class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2 ">
-        <img *ngIf="authService.currentUser.image" [src]="authService.currentUser.image" width="24" height="24"
+        <img *ngIf="authService.currentUser?.image" [src]="authService.currentUser?.image" width="24" height="24"
             class="rounded-circle">
-        <img *ngIf="!authService.currentUser.image" src="https://static.productionready.io/images/smiley-cyrus.jpg"
+        <img *ngIf="!authService.currentUser?.image" src="https://static.productionready.io/images/smiley-cyrus.jpg"
             width="24" height="24" class="rounded-circle">
-        <p class="font-weight-bold ml-2">{{authService.currentUser.username}}</p>
+        <p class="font-weight-bold ml-2">{{authService.currentUser?.username}}</p>
     </a>
-    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
+    <a routerLink="/coming-soon" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
         <img src="../../../../assets/friend.png" width="24" height="24">
         <p class="font-weight-bold ml-2">Bạn Bè</p>
     </a>
-    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
+    <a routerLink="/coming-soon" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
         <img src="../../../../assets/lastest.png" width="24" height="24">
 
         <p class="font-weight-bold ml-2">Gần đây</p>
     </a>
-    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
+    <a routerLink="/coming-soon" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
         <img src="../../../../assets/group.png" width="24" height="24">
 
         <p class="font-weight-bold ml-2">Nhóm</p>
     </a>
-    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
+    <a routerLink="/coming-soon" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
         <img src="../../../../assets/favorite.png" width="24" height="24">
 
         <p class="font-weight-bold ml-2">Yêu thích</p>
     </a>
-    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
+    <a routerLink="/coming-soon" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
         <img src="../../../../assets/list-friend.png" width="24" height="24">
 
         <p class="font-weight-bold ml-2">Danh sách bạn bè</p>
     </a>
-    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
+    <a routerLink="/coming-soon" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
         <img src="../../../../assets/save.png" width="24" height="24">
 
         <p class="font-weight-bold ml-2">Đã lưu</p>
     </a>
-    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
+    <a routerLink="/coming-soon" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
         <img src="../../../../assets/cebletation.png" width="24" height="24">
 
         <p class="font-weight-bold ml-2">Kỉ niệm</p>
     </a>
-    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
+    <a routerLink="/coming-soon" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
         <img src="../../../../assets/maketplace.png" width="24" height="24">
 
         <p class="font-weight-bold ml-2">Marketplace</p>
     </a>
-    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
+    <a routerLink="/coming-soon" class="list-group-item list-group-item-action border-0 d-flex align-items-center px-2">
         <img src="../../../../assets/messages.png" width="24" height="24">
 
         <p class="font-weight-bold ml-2">Messages</p>

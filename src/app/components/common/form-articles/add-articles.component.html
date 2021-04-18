@@ -1,6 +1,8 @@
-<div class="new-articles shadow bg-white p-2 rounded">
-    <form [formGroup]="articleForm" (ngSubmit)="postMyArticle()">
+<div class="new-articles shadow bg-white rounded">
 
+    <form [formGroup]="articleForm" (ngSubmit)="postMyArticle()">
+        <h3 *ngIf="!edit" class="text-primary mb-3 pb-2 border-bottom">Thêm bài viết mới</h3>
+        <h3 *ngIf="edit" class="text-primary mb-3 pb-2 border-bottom">Thêm bài viết mới</h3>
         <div *ngIf="articleForm.invalid && articleForm.touched && isPostArticle && !edit">
             <div class="alert alert-danger" role="alert">
                 <p *ngIf="articleForm.controls.title.errors?.required && !edit">Tiêu đề không được để trống</p>
@@ -26,7 +28,7 @@
         </div>
 
 
-        <div class="text-right">
+        <div class="text-right submit border-top pt-2">
             <button type="button" class="btn btn-danger mr-2" (click)="cancelPost()">Hủy</button>
             <button type="submit" class="btn btn-success">{{!edit? "Đăng bài": "Chỉnh sửa"}}</button>
         </div>

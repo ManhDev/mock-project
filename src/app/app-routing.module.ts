@@ -1,3 +1,4 @@
+import { ComingSoonComponent } from './components/screens/coming-soon/coming-soon.component';
 import { AboutUsComponent } from './components/screens/about-us/about-us.component';
 import { TagsViewComponent } from './components/screens/home/tags-view/tags-view.component';
 import { NewsComponent } from './components/screens/home/news/news.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [LoginGuard] },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'coming-soon', component: ComingSoonComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent }
 ];
 

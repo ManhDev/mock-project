@@ -1,3 +1,14 @@
+.new-articles {
+  padding: 1rem 2.5rem;
+
+  h3,
+  .submit {
+    margin: 0 -2.5rem;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+  }
+}
+
 textarea {
   max-height: 80px;
 }
