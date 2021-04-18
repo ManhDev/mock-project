@@ -4,7 +4,10 @@
     <div class="d-flex mb-2">
       <div class="mr-2">
         <a routerLink="/profile/{{ article.author?.username }}" class="custom-pointer">
-          <img [src]="article.author?.image" alt="" width="50" height="50px" class="rounded-circle" />
+          <img *ngIf="article.author?.image" [src]="article.author?.image" alt="" width="50" height="50px"
+            class="rounded-circle" />
+          <img *ngIf="!article.author?.image" src="https://static.productionready.io/images/smiley-cyrus.jpg" alt=""
+            width="50" height="50px" class="rounded-circle" />
         </a>
       </div>
       <div>
