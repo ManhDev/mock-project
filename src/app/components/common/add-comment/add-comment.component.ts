@@ -15,15 +15,14 @@ export class AddCommentComponent implements OnInit {
   comment = new FormControl('', Validators.required)
   constructor(private commentsService: CommentsService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   addComment() {
     let newComment = {
       comment: { body: this.comment.value }
     }
-    this.commentsService.addCommentBySlug(this.article.slug, newComment).subscribe(res => {
-      this.mycomment.emit(res)
-      this.comment.reset()
-    })
+    this.mycomment.emit(newComment)
+    this.comment.reset()
   }
 }
