@@ -20,13 +20,10 @@ export class NewsComponent implements OnInit {
   offset: number = 0;
   limit: number = 10;
   loadingModalRef: any;
-
-  modalOption: NgbModalOptions = {};
   constructor(private articleService: ArticlesService, public authService: AuthService, private userService: UserService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.modalOption.backdrop = 'static';
-    this.modalOption.keyboard = false;
+
     this.loadingModalRef = this.modalService.open(LoadingComponent)
     if (this.authService.isLogIn()) {
       this.getFeedListArticles(this.limit, this.offset);

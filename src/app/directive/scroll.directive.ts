@@ -15,6 +15,9 @@ export class ScrollDirective {
       this.emitted = true;
       this.scrollingFinished.emit();
     }
+    else if ((window.innerHeight + window.scrollY) < document.body.offsetHeight * 0.8) {
+      this.emitted = false;
+    }
   }
 
 }

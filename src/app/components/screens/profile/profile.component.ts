@@ -34,8 +34,6 @@ export class ProfileComponent implements OnInit {
       })
       this.getMyListArticles(param.id, this.limit, this.offset)
       this.getMyListFavoriteArticles(param.id, this.limit, this.offset)
-      this.modalOption.backdrop = 'static';
-      this.modalOption.keyboard = false;
       this.loadingModalRef = this.modalService.open(LoadingComponent)
     })
   }

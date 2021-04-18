@@ -21,12 +21,11 @@ export class CommunityComponent implements OnInit {
   limit: number = 10;
   totalArtilces: number;
   loadingModalRef: any;
-  modalOption: NgbModalOptions = {}
+
   constructor(private articleService: ArticlesService, public authService: AuthService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.modalOption.backdrop = 'static';
-    this.modalOption.keyboard = false;
+
     this.getGlobalListArticles(this.limit, this.offset)
     this.articleService.isMoreData.pipe(takeUntil(this.unsubcription)).subscribe(res => { if (res) { this.getGlobalListArticles(this.limit, this.offset) } })
     this.loadingModalRef = this.modalService.open(LoadingComponent)
