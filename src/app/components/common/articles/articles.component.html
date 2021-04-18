@@ -26,7 +26,7 @@
     <!-- content article -->
     <div>
       <a class="card-title mb-0 custom-pointer font-weight-bold text-decoration-none text-dark"
-        routerLink="/details/{{ article['slug'] }}">{{ article.title }}</a>
+        routerLink="/articles/{{ article['slug'] }}">{{ article.title }}</a>
       <p class="card-text" *ngIf="!isShowDetail">{{ article.body | bodyCustom }}.</p>
       <p class="card-text" *ngIf="isShowDetail">{{ article.body}}.</p>
     </div>

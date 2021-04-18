@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'profile/:id/edit', component: EditComponent, canActivate: [AuthGuard] },
-  { path: 'details/:id', component: DetailArticleComponent },
+  { path: 'articles/:id', component: DetailArticleComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [LoginGuard] },
   { path: 'about-us', component: AboutUsComponent },
