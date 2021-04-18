@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'phakebook', component: HomeComponent, children: [
       { path: '', redirectTo: 'community', pathMatch: 'full' },
       { path: 'community', component: CommunityComponent },
-      { path: 'news', component: NewsComponent },
+      { path: 'news', component: NewsComponent, canActivate: [AuthGuard] },
       { path: ':id', component: TagsViewComponent }
     ]
   },
