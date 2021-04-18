@@ -16,7 +16,10 @@ export class ProfileComponent implements OnInit {
   userData = {} as Profile;
   myarticles = [] as Article[];
   myfavoritedArticles = [] as Article[];
-  link: string
+  limit: number = 10;
+  offset: number = 0;
+  totalsMyArticles: number;
+  totalsMyFavoriteArticles: number
   constructor(private userService: UserService, private articlesService: ArticlesService, private route: ActivatedRoute, public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -24,11 +27,9 @@ export class ProfileComponent implements OnInit {
       this.userService.getUserProfile(param.id).subscribe((profile: { profile: Profile }) => {
         this.userData = profile.profile;
       })
-      this.getMyListArticles(param.id)
-      this.getMyListFavoriteArticles(param.id)
+      this.getMyListArticles(param.id, this.limit, this.offset)
+      this.getMyListFavoriteArticles(param.id, this.limit, this.offset)
     })
-
-
   }
 
   myArticles(): void {
@@ -38,20 +39,24 @@ export class ProfileComponent implements OnInit {
     this.mode = 'favoritedArticles';
   }
   getMyArticle($event) {
-    this.articlesService.getMyArticles(this.authService.currentUser.username).subscribe((res: { articles: Article[] }) => {
+    this.articlesService.getMyArticles(this.authService.currentUser.username, this.limit, this.offset).subscribe((res: { articles: Article[] }) => {
       this.myarticles = res.articles;
     })
   }
 
-  getMyListArticles(username) {
-    this.articlesService.getMyArticles(username).subscribe((res: { articles: Article[] }) => {
-      this.myarticles = res.articles
+  getMyListArticles(username, limit, offset) {
+    this.articlesService.getMyArticles(username, limit, offset).subscribe((res: { articles: Article[], articlesCount: number }) => {
+      this.totalsMyArticles = res.articlesCount
+      this.myarticles = res.articles;
     })
   }
 
-  getMyListFavoriteArticles(username) {
-    this.articlesService.getMyFovaritedArticles(username).subscribe((res: { articles: Article[] }) => {
+  getMyListFavoriteArticles(username, limit, offset) {
+    this.articlesService.getMyFovaritedArticles(username, limit, offset).subscribe((res: { articles: Article[], articlesCount: number }) => {
       this.myfavoritedArticles = res.articles
+      this.totalsMyFavoriteArticles = res.articlesCount;
+      console.log(res.articlesCount);
+
     })
   }
 
@@ -68,6 +73,14 @@ export class ProfileComponent implements OnInit {
   }
 
   getDataAgain($event) {
-    this.getMyListArticles($event)
+    this.getMyListArticles($event, this.limit, this.offset)
+  }
+
+  onScroll($event) {
+    if ($event.target.scrollTop + $event.target.clientHeight >= $event.target.scrollHeight) {
+      this.offset += 10;
+      if (this.offset <= this.totalsMyArticles && this.mode === 'myArticles') { this.getMyListArticles(this.userData.username, this.limit, this.offset) }
+      if (this.offset <= this.totalsMyFavoriteArticles && this.mode === 'favoritedArticles') { this.getMyListFavoriteArticles(this.userData.username, this.limit, this.offset) }
+    }
   }
 }

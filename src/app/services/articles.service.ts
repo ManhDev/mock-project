@@ -29,11 +29,11 @@ export class ArticlesService {
     return this.http.get(this.url_base);
   }
 
-  getMyArticles(username) {
-    return this.http.get(this.url_base + '?author=' + username);
+  getMyArticles(username, limit: number = 10, offset: number) {
+    return this.http.get(this.url_base + '?author=' + username + '&limit=' + limit + '&offset=' + offset);
   }
-  getMyFovaritedArticles(username) {
-    return this.http.get(this.url_base + '?favorited=' + username);
+  getMyFovaritedArticles(username, limit: number = 10, offset: number) {
+    return this.http.get(this.url_base + '?favorited=' + username + '&limit=' + limit + '&offset=' + offset);
   }
 
   getDetailsAriticle(id) {
