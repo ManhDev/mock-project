@@ -32,6 +32,7 @@ import { FooterComponent } from './components/screens/footer/footer.component';
 import { AboutUsComponent } from './components/screens/about-us/about-us.component';
 import { ComingSoonComponent } from './components/screens/coming-soon/coming-soon.component';
 import { LoadingComponent } from './components/common/loading/loading.component';
+import { ScrollDirective } from './directive/scroll.directive';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { LoadingComponent } from './components/common/loading/loading.component'
     AboutUsComponent,
     ComingSoonComponent,
     LoadingComponent,
+    ScrollDirective,
   ],
   imports: [
     BrowserModule,

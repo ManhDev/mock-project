@@ -43,40 +43,6 @@ p {
   outline: none !important;
 }
 
-.scroll-custom {
-  height: 70vh;
-  max-height: 70vh;
-  overflow-y: none;
-}
-
-.scroll-custom:hover {
-  overflow-y: scroll;
-}
-
-.scroll-custom::-webkit-scrollbar {
-  width: 20px;
-}
-
-.scroll-custom::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-.scroll-custom::-webkit-scrollbar-thumb {
-  background-color: #b3b3b3;
-  border-radius: 20px;
-  border: 6px solid transparent;
-  background-clip: content-box;
-}
-
-.list-group {
-  .list-group-item {
-    background: none;
-  }
-  .list-group-item:hover {
-    background: #e0e0e0;
-  }
-}
-
 .margin-top {
   margin-top: 7rem;
 }

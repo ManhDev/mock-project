@@ -1,4 +1,4 @@
-<div class="scroll-custom" (scroll)="onScroll($event)">
+<div scrollTracker (scrollingFinished)="onScrollingFinished()">
     <ng-container *ngFor="let article of globalArticles">
         <app-articles [article]="article" [slug]="article.slug" (loadingData)="getDataAgain($event)"></app-articles>
     </ng-container>

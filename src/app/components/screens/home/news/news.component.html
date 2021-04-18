@@ -1,4 +1,4 @@
-<div class="scroll-custom" (scroll)="onScroll($event)" *ngIf="authService.isLogIn()">
+<div *ngIf="authService.isLogIn()" scrollTracker (scrollingFinished)="onScrollingFinished()">
     <ng-container *ngFor="let article of feedArticles">
         <app-articles [article]="article" [slug]="article.slug"></app-articles>
     </ng-container>

@@ -1,5 +1,5 @@
 import { LoadingComponent } from './../../common/loading/loading.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Profile } from './../../../models/profile';
 import { UserService } from './../../../services/user.service';
 import { ArticlesService } from './../../../services/articles.service';
@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   totalsMyArticles: number;
   totalsMyFavoriteArticles: number;
   loadingModalRef: any;
+  modalOption: NgbModalOptions = {}
   constructor(private userService: UserService, private articlesService: ArticlesService, private route: ActivatedRoute, public authService: AuthService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -33,6 +34,8 @@ export class ProfileComponent implements OnInit {
       })
       this.getMyListArticles(param.id, this.limit, this.offset)
       this.getMyListFavoriteArticles(param.id, this.limit, this.offset)
+      this.modalOption.backdrop = 'static';
+      this.modalOption.keyboard = false;
       this.loadingModalRef = this.modalService.open(LoadingComponent)
     })
   }
@@ -54,7 +57,7 @@ export class ProfileComponent implements OnInit {
       .pipe(finalize(() => { this.loadingModalRef.close() }))
       .subscribe((res: { articles: Article[], articlesCount: number }) => {
         this.totalsMyArticles = res.articlesCount
-        this.myarticles = res.articles;
+        this.myarticles = this.myarticles.concat(res.articles);
       })
   }
 
@@ -62,7 +65,7 @@ export class ProfileComponent implements OnInit {
     this.articlesService.getMyFovaritedArticles(username, limit, offset)
       .pipe(finalize(() => { this.loadingModalRef.close() }))
       .subscribe((res: { articles: Article[], articlesCount: number }) => {
-        this.myfavoritedArticles = res.articles
+        this.myfavoritedArticles = this.myfavoritedArticles.concat(res.articles)
         this.totalsMyFavoriteArticles = res.articlesCount;
       })
   }
@@ -83,17 +86,16 @@ export class ProfileComponent implements OnInit {
     this.getMyListArticles($event, this.limit, this.offset)
   }
 
-  onScroll($event) {
-    if ($event.target.scrollTop + $event.target.clientHeight >= $event.target.scrollHeight) {
-      this.offset += 10;
-      if (this.offset <= this.totalsMyArticles && this.mode === 'myArticles') {
-        this.getMyListArticles(this.userData.username, this.limit, this.offset);
-        this.loadingModalRef = this.modalService.open(LoadingComponent)
-      }
-      if (this.offset <= this.totalsMyFavoriteArticles && this.mode === 'favoritedArticles') {
-        this.getMyListFavoriteArticles(this.userData.username, this.limit, this.offset);
-        this.loadingModalRef = this.modalService.open(LoadingComponent)
-      }
+  onScrollingFinished() {
+    this.offset += 10;
+    if (this.offset <= this.totalsMyArticles && this.mode === 'myArticles') {
+      this.getMyListArticles(this.userData.username, this.limit, this.offset);
+      this.loadingModalRef = this.modalService.open(LoadingComponent)
+    }
+    if (this.offset <= this.totalsMyFavoriteArticles && this.mode === 'favoritedArticles') {
+      this.getMyListFavoriteArticles(this.userData.username, this.limit, this.offset);
+      this.loadingModalRef = this.modalService.open(LoadingComponent)
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingComponent } from './../../../common/loading/loading.component';
 import { UserService } from './../../../../services/user.service';
 import { AuthService } from './../../../../services/auth.service';
@@ -20,9 +20,13 @@ export class NewsComponent implements OnInit {
   offset: number = 0;
   limit: number = 10;
   loadingModalRef: any;
+
+  modalOption: NgbModalOptions = {};
   constructor(private articleService: ArticlesService, public authService: AuthService, private userService: UserService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
+    this.modalOption.backdrop = 'static';
+    this.modalOption.keyboard = false;
     this.loadingModalRef = this.modalService.open(LoadingComponent)
     if (this.authService.isLogIn()) {
       this.getFeedListArticles(this.limit, this.offset);
@@ -36,16 +40,14 @@ export class NewsComponent implements OnInit {
     this.articleService
       .getMyFeedArticles(limit, offset).pipe(finalize(() => { this.loadingModalRef.close() }))
       .subscribe((res: { articles: Article[]; articlesCount: number }) => {
-        this.feedArticles = res.articles;
+        this.feedArticles = this.feedArticles.concat(res.articles);
         this.totalArtilces = res.articlesCount
       });
   }
 
-  onScroll($event) {
-    if ($event.target.scrollTop + $event.target.clientHeight >= $event.target.scrollHeight) {
-      this.offset += 10;
-      if (this.offset <= this.totalArtilces) { this.getFeedListArticles(this.limit, this.offset); this.loadingModalRef = this.modalService.open(LoadingComponent) }
-    }
+  onScrollingFinished() {
+    this.offset += 10;
+    if (this.offset <= this.totalArtilces) { this.getFeedListArticles(this.limit, this.offset); this.loadingModalRef = this.modalService.open(LoadingComponent) }
   }
 
 }
