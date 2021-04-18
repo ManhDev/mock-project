@@ -53,15 +53,15 @@ p {
   overflow-y: scroll;
 }
 
-.scroll-custom::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 20px;
 }
 
-.scroll-custom::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-.scroll-custom::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: #b3b3b3;
   border-radius: 20px;
   border: 6px solid transparent;
@@ -79,4 +79,11 @@ p {
 
 .margin-top {
   margin-top: 7rem;
+}
+
+.modal-content {
+  padding-top: 40vh;
+  background: none;
+  border: none;
+  text-align: center;
 }

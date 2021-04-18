@@ -31,6 +31,7 @@ import { FunctionalityComponent } from './components/common/functionality/functi
 import { FooterComponent } from './components/screens/footer/footer.component';
 import { AboutUsComponent } from './components/screens/about-us/about-us.component';
 import { ComingSoonComponent } from './components/screens/coming-soon/coming-soon.component';
+import { LoadingComponent } from './components/common/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ComingSoonComponent } from './components/screens/coming-soon/coming-soo
     FooterComponent,
     AboutUsComponent,
     ComingSoonComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

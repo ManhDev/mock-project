@@ -1,3 +1,5 @@
+import { LoadingComponent } from './../../common/loading/loading.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Profile } from './../../../models/profile';
 import { UserService } from './../../../services/user.service';
 import { ArticlesService } from './../../../services/articles.service';
@@ -5,6 +7,7 @@ import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { ActivatedRoute } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -19,8 +22,9 @@ export class ProfileComponent implements OnInit {
   limit: number = 10;
   offset: number = 0;
   totalsMyArticles: number;
-  totalsMyFavoriteArticles: number
-  constructor(private userService: UserService, private articlesService: ArticlesService, private route: ActivatedRoute, public authService: AuthService) { }
+  totalsMyFavoriteArticles: number;
+  loadingModalRef: any;
+  constructor(private userService: UserService, private articlesService: ArticlesService, private route: ActivatedRoute, public authService: AuthService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(param => {
@@ -29,6 +33,7 @@ export class ProfileComponent implements OnInit {
       })
       this.getMyListArticles(param.id, this.limit, this.offset)
       this.getMyListFavoriteArticles(param.id, this.limit, this.offset)
+      this.loadingModalRef = this.modalService.open(LoadingComponent)
     })
   }
 
@@ -45,19 +50,23 @@ export class ProfileComponent implements OnInit {
   }
 
   getMyListArticles(username, limit, offset) {
-    this.articlesService.getMyArticles(username, limit, offset).subscribe((res: { articles: Article[], articlesCount: number }) => {
-      this.totalsMyArticles = res.articlesCount
-      this.myarticles = res.articles;
-    })
+    this.articlesService.getMyArticles(username, limit, offset)
+      .pipe(finalize(() => { this.loadingModalRef.close() }))
+      .subscribe((res: { articles: Article[], articlesCount: number }) => {
+        this.totalsMyArticles = res.articlesCount
+        this.myarticles = res.articles;
+      })
   }
 
   getMyListFavoriteArticles(username, limit, offset) {
-    this.articlesService.getMyFovaritedArticles(username, limit, offset).subscribe((res: { articles: Article[], articlesCount: number }) => {
-      this.myfavoritedArticles = res.articles
-      this.totalsMyFavoriteArticles = res.articlesCount;
-      console.log(res.articlesCount);
+    this.articlesService.getMyFovaritedArticles(username, limit, offset)
+      .pipe(finalize(() => { this.loadingModalRef.close() }))
+      .subscribe((res: { articles: Article[], articlesCount: number }) => {
+        this.myfavoritedArticles = res.articles
+        this.totalsMyFavoriteArticles = res.articlesCount;
+        console.log(res.articlesCount);
 
-    })
+      })
   }
 
   followHandler(profile) {
@@ -79,8 +88,14 @@ export class ProfileComponent implements OnInit {
   onScroll($event) {
     if ($event.target.scrollTop + $event.target.clientHeight >= $event.target.scrollHeight) {
       this.offset += 10;
-      if (this.offset <= this.totalsMyArticles && this.mode === 'myArticles') { this.getMyListArticles(this.userData.username, this.limit, this.offset) }
-      if (this.offset <= this.totalsMyFavoriteArticles && this.mode === 'favoritedArticles') { this.getMyListFavoriteArticles(this.userData.username, this.limit, this.offset) }
+      if (this.offset <= this.totalsMyArticles && this.mode === 'myArticles') {
+        this.getMyListArticles(this.userData.username, this.limit, this.offset);
+        this.loadingModalRef = this.modalService.open(LoadingComponent)
+      }
+      if (this.offset <= this.totalsMyFavoriteArticles && this.mode === 'favoritedArticles') {
+        this.getMyListFavoriteArticles(this.userData.username, this.limit, this.offset);
+        this.loadingModalRef = this.modalService.open(LoadingComponent)
+      }
     }
   }
 }
